@@ -32,7 +32,12 @@ TrabalhadorAssalariado::TrabalhadorAssalariado() : Trabalhador(){}
 TrabalhadorAssalariado::TrabalhadorAssalariado(const string &nome, double salario) : Trabalhador(nome, salario){}
 
 double TrabalhadorPorHora::calcularPagamento(int Horas){
-    return salario*Horas;
+    if(Horas <= 40){
+        return Horas*salario;
+    }else{
+        return 40*salario + ((Horas-40) * (salario*1.5));
+    }
 }
+
 TrabalhadorPorHora::TrabalhadorPorHora(){}
 TrabalhadorPorHora::TrabalhadorPorHora(const string &nome, double salario) : Trabalhador(nome,salario){}
