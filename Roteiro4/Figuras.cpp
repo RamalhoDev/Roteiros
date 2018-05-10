@@ -1,82 +1,121 @@
+#include<string>
+#include "Figuras.h"
 
-#include <string>
 using namespace std;
 
-class FigurasGeometricas{
-    protected:
-        string nome;
-    public:
-        FigurasGeometricas();
-        FigurasGeometricas(string nome, int Area);
-        virtual ~FigurasGeometricas();
-        void setNome(string nome);
-        string getNome();
-};
+FigurasGeometricas::FigurasGeometricas(){}
+FigurasGeometricas::FigurasGeometricas(string nome){
+    this -> nome = nome;
+}
+void FigurasGeometricas::setNome(string nome){
+    this -> nome = nome;
+}
 
-class Retangulo : public: FigurasGeometricas{}
-        private:
-            double base;
-            double altura;
-            double area;
+string FigurasGeometricas:: getNome(){
+    return nome;
+}
 
-        public:
-            Triangulo();
-            Triangulo( double base, double altura, double area);
-            virtual ~Triangulo();
-            void setBase(double base);
-            void setAltura(double altura);
-            void setArea(double area);
-            double getAltura();
-            double getBase();
-            double getArea();
-};
+Retangulo::Retangulo(){} : FigurasGeometricas(){}
+Retangulo::Retangulo(double area, double base, double altura){
+    this -> base = base;
+    this -> altura = altura;
+    this -> area = area;
+}
 
-class Triangulo: public: FigurasGeometricas{
-        private:
-            double base;
-            double altura;
-            double area;
+void Retangulo:: setBase(double base){
+    this -> base = base;
+}
 
-        public:
-            Triangulo();
-            Triangulo( double base, double altura, double area);
-            virtual ~Triangulo();
-            void setBase(double base);
-            void setAltura(double altura);
-            void setArea(double area);
-            double getAltura();
-            double getBase();
-            double getArea();
-};
+void Retangulo:: setAltura(double altura){
+    this -> altura = altura;
+}
 
-class Quadrado: public: FigurasGeometricas{
-        private:
-            double base;
-            double area;
+double Retangulo:: getArea(){
+    return base*altura;
+}
 
-        public:
-            Triangulo();
-            Triangulo( double base, double altura, double area);
-            virtual ~Triangulo();
-            void setBase(double base);
-            void setArea(double area);
-            double getBase();
-            double getArea();
-};
+double Retangulo:: getAltura(){
+    return altura;
+}
 
-class Circulo: public: FigurasGeometricas{
-        private:
-            double raio;
-            double area;
+double Retangulo:: getBase(){
+    return base;
+}
 
-        public:
-            Triangulo();
-            Triangulo( double base, double altura, double area);
-            virtual ~Triangulo();
-            void setRaio(double raio);
-            void setArea(double area);
-            double getRaio();
-            double getArea();
-};
+Circulo::Circulo(){} : FigurasGeometricas(){}
+Circulo::Circulo(double area, double raio){
+    this -> raio = raio;
+    this -> area = area;
+}
 
-#endif
+//void Circulo:: setArea(double area){
+  //  this -> area = Area;
+//}
+
+void Circulo:: setRaio(double raio){
+    this -> raio= raio;
+}
+
+double Circulo:: getRaio(){
+    return raio;
+}
+
+double Circulo:: getArea(){
+    return raio*raio*3.1413;
+}
+
+Quadrado::Quadrado(){} : FigurasGeometricas(){}
+Quadrado::Quadrado(/*double area,*/ double base){
+    //this -> base = base;
+    this -> area = area;
+}
+
+//void Quadrado:: setArea(double area){
+  //  this -> area = area;
+//}
+
+void Quadrado:: setBase(double base){
+    this -> base = base;
+}
+
+double Quadrado:: getArea(){
+    return base*base;
+}
+
+double Quadrado:: getBase(){
+    return base;
+}
+
+Triangulo::Triangulo(){} : FigurasGeometricas(){}
+Triangulo::Triangulo(/*double area,*/ double base, double altura){
+    //this -> base = base;
+    this -> altura = altura;
+    this -> area = area;
+}
+
+//void Triangulo:: setArea(double area){
+  //  this -> area = area;
+//}
+
+void Triangulo:: setBase(double base){
+    this -> base = base;
+}
+
+void Triangulo:: setAltura(double altura){
+    this -> altura = altura;
+}
+
+double Triangulo:: getArea(){
+    return base*altura;
+}
+
+double Triangulo:: getBase(){
+    return base;
+}
+
+double Triangulo:: getAltura(){
+    return altura;
+}
+
+FigurasGeometricas::~FigurasGeometricas(){}
+
