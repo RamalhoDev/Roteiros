@@ -1,6 +1,7 @@
 #ifndef SISTEMAIMOBILIARIA_H
 #define SISTEMAIMOBILIARIA_H
 #include <string>
+#include "Imovel.h"
 
 using namespace std;
 
