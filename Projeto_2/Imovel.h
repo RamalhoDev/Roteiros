@@ -5,16 +5,27 @@ using namespace std;
 
 class Imovel{
     protected:
-        int imovel_para_vender, imovel_para_alugar, tipoOferta;
+        const int imovel_para_vender = 1;
+        const int imovel_para_alugar = 0;
+        int tipoOferta;
         double valor;
         Endereco endereco;
 
-    public:
+    public:    
+        void setValor(double valor);
+        void setTipoOferta(int tipoOferta);
+        
         double getValor();
         int getTipoOferta();
         Endereco getEndereco();
         string getDescricao();
+        
         Imovel();
+        Imovel(int imovel_para_alugar, 
+               int imovel_para_vender, 
+               int tipoOferta, 
+               double valor, 
+               const Endereco &endereco);
         virtual ~Imovel();
 };
 
@@ -24,6 +35,18 @@ class Endereco{
         int numero;
     public:
         Endereco();
+        Endereco(string logradouro, 
+                 string bairro, 
+                 string cidade, 
+                 string cep, 
+                 int numero);
+
+        string getLogradouro();
+        string getBairro();
+        string getCidade();
+        string getCep();
+        int getNumero();
+
         virtual ~Endereco();
 };
 
@@ -33,7 +56,21 @@ class Casa: public Imovel{
         double areaTerreno, areaConstruida;
     public:
         Casa();
-        virtual ~Casa();
+        Casa(int numPavimentos, 
+             int numQuartos, 
+             double areaTerreno,
+             double areaConstruida);
+        virtual ~Casa();        
+
+        void setNumPavimentos(int numPavimentos);
+        void setNumQuartos(int numQuartos);
+        void setAreaTerreno(double areaTerreno);
+        void setAreaConstruida(double areaConstruida);
+
+        int getNumPavimentos();
+        int getNumQuartos();
+        double getAreaTerreno();
+        double getAreaConstruida();
 };
 
 class Apartamento: public Imovel{
@@ -43,7 +80,24 @@ class Apartamento: public Imovel{
         double valorCondominio, area;
     public:
         Apartamento();
+        Apartamento(string posicao, 
+                    int numQuartos, 
+                    int vagasGaragem, 
+                    double valorCondominio, 
+                    double area);
         virtual ~Apartamento();
+
+        void setPosicao(string posicao);
+        void setNumQuartos(int numQuartos);
+        void setVagasGaragem(int vagasGaragem);
+        void setValorCondominio(double valorCondominio);
+        void setArea(double area);
+        
+        string getPosicao();
+        int getNumQuartos();
+        int getVagasGaragem();
+        double getValorCondominio();
+        double getArea();
 };
 
 class Terreno: public Imovel{
@@ -51,6 +105,9 @@ class Terreno: public Imovel{
         double area;
     public:
         Terreno();
+        Terreno(double area);
+        void setArea(double area);
+        double getArea();
         virtual ~Terreno();
 };
 

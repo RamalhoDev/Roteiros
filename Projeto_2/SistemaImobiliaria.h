@@ -2,7 +2,7 @@
 #define SISTEMAIMOBILIARIA_H
 #include <string>
 #include "Imovel.h"
-
+#include <list>
 using namespace std;
 
 class SistemaImobiliaria{
