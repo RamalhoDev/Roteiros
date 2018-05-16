@@ -15,7 +15,7 @@ string FigurasGeometricas:: getNome(){
     return nome;
 }
 
-Retangulo::Retangulo(){} : FigurasGeometricas(){}
+Retangulo::Retangulo() : FigurasGeometricas(){}
 Retangulo::Retangulo(double area, double base, double altura){
     this -> base = base;
     this -> altura = altura;
@@ -42,7 +42,7 @@ double Retangulo:: getBase(){
     return base;
 }
 
-Circulo::Circulo(){} : FigurasGeometricas(){}
+Circulo::Circulo() : FigurasGeometricas(){}
 Circulo::Circulo(double area, double raio){
     this -> raio = raio;
     this -> area = area;
@@ -64,7 +64,7 @@ double Circulo:: getArea(){
     return raio*raio*3.1413;
 }
 
-Quadrado::Quadrado(){} : FigurasGeometricas(){}
+Quadrado::Quadrado() : FigurasGeometricas(){}
 Quadrado::Quadrado(/*double area,*/ double base){
     //this -> base = base;
     this -> area = area;
@@ -86,7 +86,7 @@ double Quadrado:: getBase(){
     return base;
 }
 
-Triangulo::Triangulo(){} : FigurasGeometricas(){}
+Triangulo::Triangulo() : FigurasGeometricas(){}
 Triangulo::Triangulo(/*double area,*/ double base, double altura){
     //this -> base = base;
     this -> altura = altura;
