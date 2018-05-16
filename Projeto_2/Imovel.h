@@ -59,7 +59,7 @@ class Casa: public Imovel{
         Casa(int numPavimentos, 
              int numQuartos, 
              double areaTerreno,
-             double areaConstruida);
+             double areaConstruida;
         virtual ~Casa();        
 
         void setNumPavimentos(int numPavimentos);
