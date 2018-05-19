@@ -1,40 +1,34 @@
 #include <iostream>
 #include <string>
 #include "Imovel.h"
-#include "SistemaImobiliaria.h"
+ #include "SistemaImobiliaria.h"
 using namespace std;
 
+SistemaImobiliaria:: SistemaImobiliaria();
+SistemaImobiliaria:: ~SistemaImobiliaria();
 
-SistemaImobiliaria(){
+void SistemaImobiliaria:: cadastraImovel(Imovel imovel){
+    return imovel;
+}
+
+string SistemaImobiliaria:: getImoveis(){
 
 }
 
-virtual ~SistemaImobiliaria(){
+string SistemaImobiliaria:: getDescricaoImoveis(){
 
 }
 
-void cadastraImovel(Imovel imovel){
-
+Imovel SistemaImobiliaria:: getImoveisPorTipo(int tipo){
+    return tipo;
 }
 
-string getImoveis(){
-
+Imovel SistemaImobiliaria:: getImoveisParaAlugarPorBairro(string bairro){
+    return bairro;
 }
-
-string getDescricaoImoveis(){
-
+Imovel SistemaImobiliaria:: getImoveisParaVenderPorBairro(string bairro){
+    return bairro
 }
-
-Imovel getImoveisPorTipo(int tipo){
-
-}
-
-Imovel getImoveisParaAlugarPorBairro(string bairro){
-    
-}
-Imovel getImoveisParaVenderPorBairro(string bairro){
-
-}
-Imovel getImoveisPorCidade(string cidade){
-
+Imovel SistemaImobiliaria:: getImoveisPorCidade(string cidade){
+    return cidade;
 }
