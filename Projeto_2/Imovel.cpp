@@ -7,7 +7,11 @@ Imovel::Imovel();
 Imovel::~Imovel();
 Imovel::Imovel(int imovel_para_alugar, int imovel_para_vender, int tipoOferta, double valor, const Endereco &endereco)
 {
-
+    this-> imovel_para_alugar = imovel_para_alugar;
+    this-> imovel_para_vender = imovel_para_vender;
+    this-> tipoOferta = tipoOferta;
+    this-> valor = valor;
+    this-> endereco = endereco;
 }
 
 double Imovel:: getVelor()
@@ -27,6 +31,14 @@ Endereco Imovel:: getEndereco()
 
 Endereco :: Endereco() : Imovel(){}
 Endereco :: ~Endereco() : Imovel(){}
+Endereco :: Endereco(string logradouro, string bairro, string cidade, string cep, int numero) : Imovel()
+{
+    this-> logradouro = logradouro;
+    this-> bairro = bairro;
+    this-> cidade = cidade;
+    this-> cep = cep;
+    this-> numero = numero;
+}
 
 string Endereco:: getLogradouro()
 {
@@ -57,6 +69,13 @@ int Endereco:: getNumero()
 
 Casa :: Casa() : Imovel(){}
 Casa :: ~Casa() : Imovel(){}
+Casa:: Casa(int numPavimentos, int numQuartos, double areaTerreno, double areaConstruida) : Imovel()
+{
+    this-> numPavimentos = numPavimentos;
+    this-> numQuartos = numQuartos;
+    this-> areaTerreno = areaTerreno;
+    this-> areaConstruida = areaConstruida;
+}
 
 void Casa:: setNumPavimentos(int numPavimentos)
 {
@@ -101,6 +120,14 @@ double Casa:: getAreaConstruida()
 
 Apartamento:: Apartamento() : Imovel(){}
 Apartamento:: ~Apartamento() : Imovel(){}
+Apartamento:: Apartamento(string posicao, int numQuartos, int vagasGaragem, double valorCondominio, double area) : Imovel()
+{
+    this-> posicao = posicao;
+    this-> numQuartos = numQuartos;
+    this-> vagasGaragem = vagasGaragem;
+    this-> valorCondominio = valorCondominio;
+    this-> area = area;
+}
 
 void Apartamento::setPosicao(string posicao)
 {
@@ -147,6 +174,10 @@ double Apartamento::getArea()
 
 Terreno :: Terreno() : Imovel(){}
 Terreno :: ~Terreno() : Imovel(){}
+Terreno:: Terreno(double area) : Imocel()
+{
+    this-> area = area;
+}
 
 void setArea(double area)
 {
