@@ -2,7 +2,7 @@
 #define SISTEMAIMOBILIARIA_H
 #include <string>
 #include <list>
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/Imovel.h"
 using namespace std;
 
 class SistemaImobiliaria{

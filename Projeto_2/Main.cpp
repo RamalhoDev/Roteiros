@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
+#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
+#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
 
 using namespace std;
 
@@ -18,7 +18,7 @@ int main(void){
 
 	setlocale(LC_ALL, "Portuguese");
 	SistemaImobiliaria *imobiliaria;
-	int tipoOferta,tipoDeImovel,menu, tipodeConsulta, x;
+	int tipoDeImovel,menu, tipodeConsulta;
 	string auxiliar, auxiliarNova;
 
 	while(1){
@@ -61,7 +61,7 @@ int main(void){
 				cout << auxiliar << endl;
 				imoveis =imobiliaria->getImoveisParaAlugarPorBairro(auxiliar);
 				for(Imovel &i: imoveis){
-					cout<<it->getDescricao()<<endl;
+					cout<<i.getDescricao()<<endl;
 				}
 			
 			}else if(tipodeConsulta == 2){
@@ -69,9 +69,9 @@ int main(void){
 				cout << "Insira o bairro desejado:" << endl;
 				getline(cin,auxiliar);
 				auxiliar = ToUpper(auxiliar);
-				imoveis =imobiliaria->getImoveisParaVenderPorBairro(auxiliar);
+				imoveis = imobiliaria->getImoveisParaVenderPorBairro(auxiliar);
 				for(Imovel &i: imoveis){
-					cout<<it->getDescricao()<<endl;
+					cout<<i.getDescricao()<<endl;
 				}
 			}else if(tipodeConsulta==3){
 			
@@ -123,15 +123,19 @@ int main(void){
 			getchar();
 
 			if(tipoDeImovel == 1){
+
 				Casa *casa;
 				casa = imobiliaria->cadastrarCasa(imobiliaria->cadastrarEndereco(), tipoDeImovel);
 				escrever->salvaListaImoveis(casa);
 				casa->~Casa();
+			
 			}else if(tipoDeImovel == 2){
+
 				Apartamento *apartamento;
 				apartamento = imobiliaria->cadastrarApartamento(imobiliaria->cadastrarEndereco(), tipoDeImovel);
 				escrever->salvaListaImoveis(apartamento);
 				apartamento->~Apartamento();
+			
 			}else if(tipoDeImovel==3){
 				Terreno *terreno;
 				terreno = imobiliaria->cadastrarTerreno(imobiliaria->cadastrarEndereco(), tipoDeImovel);

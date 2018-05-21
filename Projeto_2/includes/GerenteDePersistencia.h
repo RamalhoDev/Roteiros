@@ -1,7 +1,7 @@
 #ifndef GERENTEDEPERSISTENCIA_H
 #define GERENTEDEPERSISTENCIA_H
 #include <list>
-#include "Imovel.h"
+#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/Imovel.h"
 
 class GerenteDePersistencia{
     public:

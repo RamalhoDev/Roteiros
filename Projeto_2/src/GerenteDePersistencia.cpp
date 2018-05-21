@@ -2,9 +2,9 @@
 #include <string>
 #include <fstream>
 #include <list>
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
+#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
+#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
 
 using namespace std;
 
@@ -14,7 +14,7 @@ list <Imovel> GerenteDePersistencia::recuperaListaImoveis(){
     ifstream arquivo;
     arquivo.open("imobiliaria.txt", ios::in);
     int tipoImovel;
-    while(!arquivo.eof()){
+    //while(!arquivo.eof()){
         arquivo >> tipoImovel;
         if(tipoImovel == 1){
             Casa casa;
@@ -32,7 +32,7 @@ list <Imovel> GerenteDePersistencia::recuperaListaImoveis(){
             imoveis.push_back(terreno);
             terreno.~Terreno();
         }
-    }
+    //}
     arquivo.close();
     return imoveis;
 }

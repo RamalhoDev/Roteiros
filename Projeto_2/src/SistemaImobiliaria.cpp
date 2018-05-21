@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
+#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
+#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
+#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/Imovel.h"
 
 using namespace std;
 
@@ -31,7 +31,7 @@ list <Imovel> SistemaImobiliaria:: getImoveisPorTipo(int tipo){
     list <Imovel> imoveis;
     for(Imovel &i : imovel){
         if(i.getTipoDeImovel() == tipo){
-            i.getDescricao();
+            i.getTipoDeImovel();
             imoveis.push_back(i);
         }
         i.~Imovel();
@@ -65,7 +65,6 @@ list <Imovel> SistemaImobiliaria:: getImoveisParaVenderPorBairro(string bairro){
     }
     return imoveis;
 }
-
 list<Imovel> SistemaImobiliaria:: getImoveisPorCidade(string cidade){
     GerenteDePersistencia recupera;
     list <Imovel> imovel = recupera.recuperaListaImoveis();
@@ -80,7 +79,7 @@ list<Imovel> SistemaImobiliaria:: getImoveisPorCidade(string cidade){
 }
 
 Endereco SistemaImobiliaria::cadastrarEndereco(){
-            //tipoDeImovel = tipo;
+
             string cidade, bairro, logradouro, cep;
             int numero;
             
@@ -99,7 +98,6 @@ Endereco SistemaImobiliaria::cadastrarEndereco(){
 
 			cout<< "\nDigite seu CEP: ";
 			getline(cin, cep);
-
 			cout<< "\nDigite o numero do imovel: ";
 			cin>>numero;
             getchar();
@@ -109,6 +107,7 @@ Endereco SistemaImobiliaria::cadastrarEndereco(){
 }
 
 Casa* SistemaImobiliaria::cadastrarCasa(Endereco endereco, int tipoDeImovel){
+
             Casa *casa;
             int numPavimentos, numQuartos, areaTerreno, areaConstruida, valor, tipoOferta;
 			cout << "-------------------------------------\n\n";
@@ -155,7 +154,6 @@ Apartamento* SistemaImobiliaria::cadastrarApartamento(Endereco endereco, int tip
 
     cout<<"\n Digite a quantidade o número quartos do apartamento: ";
     cin>> numQuartos;
-
     cout<<"\n Digite a quantidade de vagas na garagem disponiveis para o seu apartamento: ";
     cin>>vagasGaragem;
 
@@ -229,6 +227,7 @@ Casa SistemaImobiliaria::lerCasaDoArquivo(ifstream &arquivo){
 
     Endereco endereco = Endereco(logradouro, bairro, cidade, cep, numero);
     Casa casa = Casa(numPavimentos, numQuartos, areaTerreno, areaConstruida, tipoOferta, tipoDeImovel, valor, endereco);
+    cout << casa.getDescricao()<<endl;
     return casa;
 }
 
@@ -244,6 +243,7 @@ Apartamento SistemaImobiliaria::lerApartamentoDoArquivo(ifstream &arquivo){
     
     Endereco endereco = Endereco(logradouro, bairro, cidade, cep, numero);
     Apartamento apartamento = Apartamento(posicao,numQuartos,vagasGaragem,valorCondominio,area,tipoOferta, tipoDeImovel, valor, endereco);
+    cout << apartamento.getDescricao()<< endl;
     return apartamento;
 }
 
@@ -258,5 +258,6 @@ Terreno SistemaImobiliaria::lerTerrenoDoArquivo(ifstream &arquivo){
     arquivo >> area;
     Endereco endereco = Endereco(logradouro, bairro, cidade, cep, numero);
     Terreno terreno =  Terreno(area,tipoOferta, tipoDeImovel, valor, endereco);
+    cout << terreno.getDescricao()<<endl;
     return terreno;
 }

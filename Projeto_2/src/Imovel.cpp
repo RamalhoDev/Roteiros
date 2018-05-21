@@ -1,7 +1,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/Imovel.h"
 
 using namespace std;
 
@@ -246,6 +246,7 @@ string Apartamento::getDescricao(){
 }
 
 
+
 void Apartamento::escreveNoArquivo(ofstream &arquivo){
     string auxiliar = "";
     auxiliar+= to_string(tipoDeImovel) + " " + to_string(valor) +" "+to_string(tipoOferta)+ " ";
@@ -295,6 +296,6 @@ void Terreno::escreveNoArquivo(ofstream &arquivo){
     auxiliar+= endereco.getBairro() +" "+ endereco.getCidade()+ " ";
     auxiliar+= endereco.getCep() +" "+ to_string(endereco.getNumero()) +" "+ endereco.getLogradouro()+" ";
     auxiliar+= to_string(area)+ " ";
-    arquivo<<auxiliar;
+    arquivo << auxiliar;
 }
 
