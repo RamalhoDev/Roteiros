@@ -1,211 +1,151 @@
 #include <iostream>
 #include <string>
-#include "Imovel.h"
-#include "SistemaImobiliaria.h"
-#include "GerenteDePersistencia.h"
-
-
-
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
 
 using namespace std;
+
+string ToUpper(string entradaUsuario){
+	string saidaUsuario;
+	for(int i = 0; i  < entradaUsuario.size(); i++){
+		saidaUsuario+= toupper(entradaUsuario[i]);
+	}
+	return saidaUsuario;
+}
 
 int main(void){
 
 	setlocale(LC_ALL, "Portuguese");
+	SistemaImobiliaria *imobiliaria;
+	int tipoOferta,tipoDeImovel,menu, tipodeConsulta, x;
+	string auxiliar, auxiliarNova;
 
-	Imovel cadastroImobiliario;
-
-	int imovel_para_alugar, imovel_para_vender, controle=0, numero, tipoOferta;
-	double valor;
-
-	string logradouro, bairro, cidade, cep;
-
-	int menu tipodeConsulta;
-
-	const Endereco &endereco;
-
-	cout<< "----------------------------------------------\n\n";
-	coun <<"                       MENU \n";
-	cout<< "----------------------------------------------\n\n";
+	while(1){
+		cout<< "----------------------------------------------\n\n";
+		cout <<"                       MENU \n";
+		cout<< "----------------------------------------------\n\n";
 
 
-	cout<<"Escolha a operação que deseja realizar: \n";
-	cout<<"      1 - Consultar Imoveis \n";
-	cout<<"      2- Cadastar Imoveis \n";
+		cout << "Escolha a operação que deseja realizar: \n";
+		cout << "      1 - Consultar Imoveis \n";
+		cout << "      2 - Cadastar Imoveis \n";
+		cout << "      3 - Sair do programa\n";
 
-	cin>>menu;
+		cin>>menu;
+		getchar();
 
-	if(menu==1){
+		if(menu==1){
 
-		cout<<"Quais imoveis gostaria de consultar?\n";
-		cout<<"1- Imoveis para Alugar por Bairro\n 2- Imovel para Vender por Bairro\n 3- Imovel por Cidade\n 4- Imoveis por Tipo\n 5- Todos os imoveis\n ";
-		cin<<tipodeConsulta;
-		cadastroImobiliario.SistemaImobiliaria.getImoveis(tipodeConsulta);
-	}
+			list<Imovel> imoveis;
+			list<string> descricao;
+			list<Imovel> ::iterator it;
+			list<string> ::iterator s;
+			cout<<"Quais imoveis gostaria de consultar?\n";
+			
+			cout<<"1 - Imoveis para Alugar por Bairro\n" << 
+				"2 - Imovel para Vender por Bairro\n" << 
+				"3 - Imovel por Cidade\n"<< 
+				"4 - Imoveis por Tipo\n"<<
+				"5 - Todos os imoveis\n"<<
+				"6 - Descrição de todos os imoveis\n";
+			cout<< "Resposta: ";
+			cin >> tipodeConsulta;
+			getchar();
 
-	if(menu==2){
+			if(tipodeConsulta == 1){
+			
+				cout << "Insira o bairro desejado:" << endl;
+				getline(cin,auxiliar);
+				auxiliar = ToUpper(auxiliar);
+				cout << auxiliar << endl;
+				imoveis =imobiliaria->getImoveisParaAlugarPorBairro(auxiliar);
+				for(Imovel &i: imoveis){
+					cout<<it->getDescricao()<<endl;
+				}
+			
+			}else if(tipodeConsulta == 2){
+			
+				cout << "Insira o bairro desejado:" << endl;
+				getline(cin,auxiliar);
+				auxiliar = ToUpper(auxiliar);
+				imoveis =imobiliaria->getImoveisParaVenderPorBairro(auxiliar);
+				for(Imovel &i: imoveis){
+					cout<<it->getDescricao()<<endl;
+				}
+			}else if(tipodeConsulta==3){
+			
+				cout << "Insira a cidade desejada:" <<endl;
+				getline(cin,auxiliar);
+				imoveis = imobiliaria->getImoveisPorCidade(auxiliar);	
+				for(Imovel &i: imoveis){
+					cout<<i.getDescricao()<<endl;
+				}
 
-		cout<<" Utilize a simobologia 0 para não e 1 para sim \n";
+			}else if(tipodeConsulta==4){
+			
+				cout << "\nInsira o tipo de imóvel que você deseja pesquisar (1 a 3):\n"
+					<< "1-Casa,\n"
+					<< "2-Apartamento\n"
+					<< "3-Terreno\n";
+				cin >> tipoDeImovel;
+				getchar();
+				imoveis = imobiliaria->getImoveisPorTipo(tipoDeImovel);
+				for(Imovel &i: imoveis){
+					cout<<i.getDescricao()<<endl;
+				}
+			}else if(tipodeConsulta==5){
+			
+				imoveis = imobiliaria->getImoveis();
+				
+				for(Imovel &i: imoveis){
+					cout<<i.getTipoOferta()<<endl;
+				}
 
-		do{
-			if(controle!=0){
-				cout<<"Voce pode escoler apenas uma opção\nTente novamente\n\n";
+			}else if(tipodeConsulta==6){
+			
+				descricao = imobiliaria->getDescricaoImoveis();
+				for(string &i: descricao){
+					cout<<i<<endl;
+				}
 			}
-			cout<<"\n\n O seu imovel esta disponível para alugar?\n";
-			cin>> imovel_para_alugar;
-			cadastroImobiliario.setImovel_para_alugar(aluguel);
 
-			cout<<"\n\n O seu imovel esta disponível para vender?\n";
-			cin>> imovel_para_vender;
-			cadastroImobiliario.setImovel_para_vender(venda);
-			++controle;
-
-		} while (imovel_para_alugar==imovel_para_vender);
-
-
-
-
-		cout<< "----------------------------------------------\n\n";
-		coun <<"            INFORMAÇÕES ADICIONAIS \n";
-		cout<< "----------------------------------------------\n\n";
-
-		do{
-			cout<< "Esolha o seu tipo de Oferta: \n\n";
+		}else if(menu==2){
+			GerenteDePersistencia *escrever;
+			SistemaImobiliaria *imobiliaria;
+			
+			cout<< "Insira o tipo de Imovel que você deseja cadastrar: \n\n";
 			cout <<"     1 - Casa\n";
 			cout <<"     2 - Apartamento\n";
 			cout <<"     3 - Terreno\n";
+			cout << "Resposta: " ;
+			cin>>tipoDeImovel;
+			getchar();
 
-			cin>>tipoOferta;
+			if(tipoDeImovel == 1){
+				Casa *casa;
+				casa = imobiliaria->cadastrarCasa(imobiliaria->cadastrarEndereco(), tipoDeImovel);
+				escrever->salvaListaImoveis(casa);
+				casa->~Casa();
+			}else if(tipoDeImovel == 2){
+				Apartamento *apartamento;
+				apartamento = imobiliaria->cadastrarApartamento(imobiliaria->cadastrarEndereco(), tipoDeImovel);
+				escrever->salvaListaImoveis(apartamento);
+				apartamento->~Apartamento();
+			}else if(tipoDeImovel==3){
+				Terreno *terreno;
+				terreno = imobiliaria->cadastrarTerreno(imobiliaria->cadastrarEndereco(), tipoDeImovel);
+				escrever->salvaListaImoveis(terreno);
+				terreno->~Terreno();
+			}
 
-		}while (tipoOferta!=1 && tipoOferta!=2 && tipoOferta!=3)
-
-		cadastroImobiliario.setTipoOferta(tipoOferta);
-
-		cout<< "-------------------------------------\n\n";
-		coun <<"                 Endereço \n";
-		cout<< "-------------------------------------\n\n";
-
-		cout<< "Digite seu Logradouro: ";
-		getline(cin, logradouro);
-		Endereco.getLogradouro(logradouro);
-
-		cout<< "\nDigite seu Bairro: ";
-		getline(cin, bairro);
-		Endereco.getBairro(bairro);
-
-		cout<< "\nDigite sua Cidade: ";
-		getline(cin, cidade);
-		Endereco.getCidade(cidade);
-
-		cout<< "\nDigite seu CEP: ";
-		getline(cin, cep);
-		Endereco.getCep(cep);
-
-		cout<< "\nDigite o numero do imovel: ";
-		cin>>numero;
-		Endereco.getNumero(numero);
-
-
-		cout<< "-------------------------------------\n\n";
-		coun <<"            Especificações \n";
-		cout<< "-------------------------------------\n\n";
-
-		//CASA
-		int numPavimentos, numQuartos, 
-		double areaTerrenoCasa,areaConstruidaCasa
+			escrever->~GerenteDePersistencia();
+			cout << "passou" << endl;
 		
-
-		//APARTAMENTO
-
-	    int numQuartosAP, vagasGaragemAP;
-	    double valorCondominio, areaCondominio;
-	    string posicaoAP;
-
-	    //TERRENO
-	    double areaterreno;
-
-
-		if(tipoOferta==1){
-		//CASA	
-
-			cout<<"\n Digite a quantidade o número de pavimentos da casa: ";
-			cin<<numPavimentos;
-			cadastroImobiliario.Casa.getNumPavimentos(numPavimentos);
-
-
-
-			cout<<"\n Digite a quantidade o número quartos da casa: ";
-			cin<<numQuartos;
-			cadastroImobiliario.Casa.getNumQuartos(numQuartos);
-
-
-			cout<<"\n Digite a área total da casa: ";
-			cin<<areaTerrenoCasa;
-			cadastroImobiliario.Casa.getAreaTerreno(areaTerrenoCasa);
-
-
-			cout<<"\n Digite a área construida da casa: ";
-			cin<<areaConstruidaCasa;
-			cadastroImobiliario.Casa.getAreaConstruida(areaConstruidaCasa);
-
-
-
+		}else if(menu == 3){
+			cout << "Obrigado por utilizar o programa !" << endl;
+			break;
 		}
-		else if(tipoOferta==2){
-		//AP	
-
-			cout<<"\n Digite a quantidade o número quartos do apartamento: ";
-			cin<<numQuartosAP;
-			cadastroImobiliario.Apartamento.getNumQuartos(numQuartosAP);
-
-			cout<<"\n Digite a quantidade de vagas na garagem disponiveis para o seu apartamento: ";
-			cin<<vagasGaragemAP;
-			cadastroImobiliario.Apartamento.getVagasGaragem(vagasGaragemAP);
-
-			cout<<"\n Digite o valor do condomínio: ";
-			cin<<valorCondominio;
-			cadastroImobiliario.Apartamento.getValorCondominio(valorCondominio);
-
-			cout<<"\n Digite a área do seu apartamento ";
-			cin<<areaCondominio;
-			cadastroImobiliario.Apartamento.getArea(areaCondominio);
-
-
-			cout<<"\n Digite a posição do seu apartamento: ";
-			getline(cin, posicaoAP);
-			cadastroImobiliario.Apartamento.getPosicao(posicaoAP);
-		}
-		else{
-		//TERRENO	
-			cout<<"Digite a área do seu terreno: "
-			cin<< areaterreno;
-			cadastroImobiliario.Terreno.getArea(areaterreno);
-		}
-		
-
-
-
-		cout<< "\n-------------------------------------\n\n";
-		coun <<"                 Valor \n";
-		cout<< "-------------------------------------\n\n";
-
-		cout<<"Qual o valor do seu imovel?\n";
-		cin>> valor;
-		cadastroImobiliario.setValor(valor);
-
-		cout<<"\n\nImovel Cadastrado Com Sucesso!\n";
-
 	}
-
-
-
-
-
-
-
-
-
-
-
-
+	return 0;
 }

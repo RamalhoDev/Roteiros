@@ -2,38 +2,45 @@
 #include <string>
 #include <fstream>
 #include <list>
-#include <iterator>
-#include "Imovel.h"
-#include "GerenteDePersistencia.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
 
 using namespace std;
 
-void GerenteDePersistencia::recuperaListaImoveis(){
-    string logradouro, bairro, cidade, cep;
-    int numero;
+list <Imovel> GerenteDePersistencia::recuperaListaImoveis(){
     list <Imovel> imoveis;
-    Imovel lerImovel;
-    Endereco endereco;
-    ifstream arquivo("imobiliaria.bin", ios::in | ios::binary | ios::ate);
-    
-    if(!arquivo.is_open()){
-        cout << "There is something wrong with the file." << endl;
-    }
-
+    SistemaImobiliaria imobiliaria;
+    ifstream arquivo;
+    arquivo.open("imobiliaria.txt", ios::in);
+    int tipoImovel;
     while(!arquivo.eof()){
-        int size = sizeof(Imovel);
-        getline(arquivo, logradouro);
-        getline(arquivo , bairro);
-        getline(arquivo, cidade);
-        getline(arquivo, cep);
-        arquivo >> numero;
-        endereco = Endereco(logradouro, bairro, cidade, cep, numero);
-
-        lerImovel= Imovel(2, 250.9, endereco);
-        imoveis.push_back(lerImovel);
+        arquivo >> tipoImovel;
+        if(tipoImovel == 1){
+            Casa casa;
+            casa = imobiliaria.lerCasaDoArquivo(arquivo);
+            imoveis.push_back(casa);
+            casa.~Casa();
+        }else if(tipoImovel==2){
+            Apartamento apartamento;
+            apartamento = imobiliaria.lerApartamentoDoArquivo(arquivo);
+            imoveis.push_back(apartamento);
+            apartamento.~Apartamento();
+        }else if(tipoImovel == 3){
+            Terreno terreno;
+            terreno = imobiliaria.lerTerrenoDoArquivo(arquivo);
+            imoveis.push_back(terreno);
+            terreno.~Terreno();
+        }
     }
     arquivo.close();
+    return imoveis;
 }
-void GerenteDePersistencia::salvaListaImoveis(list <Imovel> imovel){
 
+void GerenteDePersistencia::salvaListaImoveis(Imovel *imovel){
+    ofstream arquivo;
+    arquivo.open("imobiliaria.txt",ios::app);
+    imovel->escreveNoArquivo(arquivo);
+    arquivo.close();
 }
+

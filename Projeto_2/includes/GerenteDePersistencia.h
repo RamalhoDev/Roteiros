@@ -5,8 +5,11 @@
 
 class GerenteDePersistencia{
     public:
-        void recuperaListaImoveis();
-        void salvaListaImoveis(list <Imovel> imovel);
+        GerenteDePersistencia(){}
+        ~GerenteDePersistencia(){}
+        list <Imovel> recuperaListaImoveis();
+        void salvaListaImoveis(Imovel *imovel);
+
 };
 
 #endif
