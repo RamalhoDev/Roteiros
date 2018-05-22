@@ -34,7 +34,6 @@ list <Imovel> SistemaImobiliaria:: getImoveisPorTipo(int tipo){
 
     for(Imovel &i : imovel){
         if(i.getTipoDeImovel() == tipo){
-            i.getTipoDeImovel();
             imoveis.push_back(i);
         }
     }
@@ -48,7 +47,7 @@ list <Imovel> SistemaImobiliaria:: getImoveisParaAlugarPorBairro(string bairro){
 
     for(Imovel &i : imovel){
 
-        if(!i.getEndereco().getBairro().compare(bairro) && i.getTipoOferta() == 0){
+        if( ToUpper(bairro,i.getEndereco().getBairro()) && i.getTipoOferta() == 0){
             imoveis.push_back(i);
         }
     }
@@ -61,7 +60,7 @@ list <Imovel> SistemaImobiliaria:: getImoveisParaVenderPorBairro(string bairro){
     list <Imovel> imoveis;
     for(Imovel &i : imovel){
 
-        if(!i.getEndereco().getBairro().compare(bairro) && i.getTipoOferta() == 1){
+        if(ToUpper(bairro,i.getEndereco().getBairro()) && i.getTipoOferta() == 1){
             imoveis.push_back(i);
         }
     }
@@ -75,7 +74,7 @@ list<Imovel> SistemaImobiliaria:: getImoveisPorCidade(string cidade){
 
     for(Imovel &i: imovel){
         cout << i.getEndereco().getCidade()<< endl;
-        if(!i.getEndereco().getCidade().compare(cidade)){
+        if(ToUpper(cidade,i.getEndereco().getCidade())){
             imoveis.push_back(i);
         }
     }
@@ -106,9 +105,6 @@ Endereco SistemaImobiliaria::cadastrarEndereco(){
 			cout<< "\nDigite o numero do imovel: ";
 			cin>>numero;
             getchar();
-            logradouro = ToUpper(logradouro);
-            cidade = ToUpper(cidade);
-            bairro = ToUpper(bairro);
             Endereco *endereco = new Endereco(logradouro, bairro, cidade, cep, numero);
             
             return *endereco;
@@ -191,7 +187,7 @@ Apartamento* SistemaImobiliaria::cadastrarApartamento(Endereco endereco, int tip
     cin >> valor;
     getchar();
     apartamento = new Apartamento(posicao, numQuartos, vagasGaragem, valorCondominio, area, tipoOferta, tipoDeImovel, valor, endereco);
-    cout<<"\n\nImovel Cadastrado Com Sucesso!\n";
+    cout <<"\n\nImovel Cadastrado Com Sucesso!\n";
     return apartamento;
 }
 
@@ -224,10 +220,12 @@ Terreno* SistemaImobiliaria::cadastrarTerreno(Endereco endereco, int tipoDeImove
     return terreno;
 }
 
-string SistemaImobiliaria::ToUpper(string entradaUsuario){
+bool SistemaImobiliaria::ToUpper(string entrada, string atributo){
 	string saidaUsuario;
-	for(int i = 0; i  < entradaUsuario.size(); i++){
-		saidaUsuario+= toupper(entradaUsuario[i]);
+	for(int i = 0; i  < entrada.size(); i++){
+		if(toupper(entrada[i]) == toupper(atributo[i]))
+            continue;
+        return false; 
 	}
-	return saidaUsuario;
+	return true;
 }

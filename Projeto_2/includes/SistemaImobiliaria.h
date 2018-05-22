@@ -20,7 +20,7 @@ class SistemaImobiliaria{
         Casa* cadastrarCasa( Endereco endereco, int tipoDeImovel);
         Apartamento* cadastrarApartamento(Endereco endereco, int tipoDeImovel);
         Terreno* cadastrarTerreno(Endereco endereco, int tipoDeImovel);
-        string ToUpper(string entrada);
+        bool ToUpper(string entrada, string atributo);
         Endereco cadastrarEndereco();
 };
 

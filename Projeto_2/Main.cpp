@@ -6,13 +6,6 @@
 
 using namespace std;
 
-string ToUpper(string entradaUsuario){
-	string saidaUsuario;
-	for(int i = 0; i  < entradaUsuario.size(); i++){
-		saidaUsuario+= toupper(entradaUsuario[i]);
-	}
-	return saidaUsuario;
-}
 
 void ImprimirDescricao(list <Imovel> data){
 	for(Imovel &i: data){
@@ -63,7 +56,6 @@ int main(void){
 			
 				cout << "\t\tInsira o bairro desejado: ";
 				getline(cin,auxiliar);
-				auxiliar = ToUpper(auxiliar);
 				imoveis =imobiliaria->getImoveisParaAlugarPorBairro(auxiliar);
 			
 				ImprimirDescricao(imoveis);
@@ -71,7 +63,6 @@ int main(void){
 			
 				cout << "\t\tInsira o bairro desejado: ";
 				getline(cin,auxiliar);
-				auxiliar = ToUpper(auxiliar);
 				imoveis = imobiliaria->getImoveisParaVenderPorBairro(auxiliar);
 				
 				ImprimirDescricao(imoveis);
@@ -80,7 +71,6 @@ int main(void){
 			
 				cout << "\t\tInsira a cidade desejada: ";
 				getline(cin,auxiliar);
-				auxiliar = ToUpper(auxiliar);
 				imoveis = imobiliaria->getImoveisPorCidade(auxiliar);	
 				
 				ImprimirDescricao(imoveis);
@@ -93,7 +83,6 @@ int main(void){
 				cout <<"\tResposta: ";
 				cin >> tipoDeImovel;
 				imoveis = imobiliaria->getImoveisPorTipo(tipoDeImovel);
-				
 				ImprimirDescricao(imoveis);
 			}else if(tipodeConsulta == 5){
 			
