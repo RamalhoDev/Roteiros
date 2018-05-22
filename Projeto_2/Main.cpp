@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
-#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
-#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/Imovel.h"
-#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
+#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
+#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
 
 using namespace std;
 
@@ -14,28 +14,34 @@ string ToUpper(string entradaUsuario){
 	return saidaUsuario;
 }
 
-int main(void){
+void ImprimirDescricao(list <Imovel> data){
+	for(Imovel &i: data){
+		cout<<i.getDescricao()<<endl;
+	}
+}
 
+int main(void){
 	setlocale(LC_ALL, "Portuguese");
-	SistemaImobiliaria *imobiliaria;
-	int tipoDeImovel,menu, tipodeConsulta;
-	string auxiliar, auxiliarNova;
 
 	while(1){
+		SistemaImobiliaria *imobiliaria;
+		int tipoDeImovel, menu, tipodeConsulta;
+		string auxiliar;
+
+		cout<< "----------------------------------------------\n";
+		cout <<"\t\t\tMENU\n";
 		cout<< "----------------------------------------------\n\n";
-		cout <<"                       MENU \n";
-		cout<< "----------------------------------------------\n\n";
 
 
-		cout << "Escolha a operação que deseja realizar: \n";
-		cout << "      1 - Consultar Imoveis \n";
-		cout << "      2 - Cadastar Imoveis \n";
-		cout << "      3 - Sair do programa\n";
-
+		cout << "Escolha a operação que deseja realizar:\n";
+		cout << "\t1 - Consultar Imoveis\n";
+		cout << "\t2 - Cadastar Imoveis\n";
+		cout << "\t3 - Sair do programa\n";
+		cout <<"\t\tResposta: ";
 		cin>>menu;
 		getchar();
 
-		if(menu==1){
+		if(menu == 1){
 
 			list<Imovel> imoveis;
 			list<string> descricao;
@@ -43,66 +49,59 @@ int main(void){
 			list<string> ::iterator s;
 			cout<<"Quais imoveis gostaria de consultar?\n";
 			
-			cout<<"1 - Imoveis para Alugar por Bairro\n" << 
-				"2 - Imovel para Vender por Bairro\n" << 
-				"3 - Imovel por Cidade\n"<< 
-				"4 - Imoveis por Tipo\n"<<
-				"5 - Todos os imoveis\n"<<
-				"6 - Descrição de todos os imoveis\n";
-			cout<< "Resposta: ";
+			cout<<"\t1 - Imoveis para Alugar por Bairro\n" << 
+				"\t2 - Imovel para Vender por Bairro\n" << 
+				"\t3 - Imovel por Cidade\n"<< 
+				"\t4 - Imoveis por Tipo\n"<<
+				"\t5 - Todos os imoveis\n"<<
+				"\t6 - Descrição de todos os imoveis\n";
+			cout<< "\t\tResposta: ";
 			cin >> tipodeConsulta;
 			getchar();
 
 			if(tipodeConsulta == 1){
 			
-				cout << "Insira o bairro desejado:" << endl;
+				cout << "\t\tInsira o bairro desejado: ";
 				getline(cin,auxiliar);
 				auxiliar = ToUpper(auxiliar);
-				cout << auxiliar << endl;
 				imoveis =imobiliaria->getImoveisParaAlugarPorBairro(auxiliar);
-				for(Imovel &i: imoveis){
-					cout<<i.getDescricao()<<endl;
-				}
 			
+				ImprimirDescricao(imoveis);
 			}else if(tipodeConsulta == 2){
 			
-				cout << "Insira o bairro desejado:" << endl;
+				cout << "\t\tInsira o bairro desejado: ";
 				getline(cin,auxiliar);
 				auxiliar = ToUpper(auxiliar);
 				imoveis = imobiliaria->getImoveisParaVenderPorBairro(auxiliar);
-				for(Imovel &i: imoveis){
-					cout<<i.getDescricao()<<endl;
-				}
-			}else if(tipodeConsulta==3){
-			
-				cout << "Insira a cidade desejada:" <<endl;
-				getline(cin,auxiliar);
-				imoveis = imobiliaria->getImoveisPorCidade(auxiliar);	
-				for(Imovel &i: imoveis){
-					cout<<i.getDescricao()<<endl;
-				}
+				
+				ImprimirDescricao(imoveis);
 
-			}else if(tipodeConsulta==4){
+			}else if(tipodeConsulta == 3){
+			
+				cout << "\t\tInsira a cidade desejada: ";
+				getline(cin,auxiliar);
+				auxiliar = ToUpper(auxiliar);
+				imoveis = imobiliaria->getImoveisPorCidade(auxiliar);	
+				
+				ImprimirDescricao(imoveis);
+			}else if(tipodeConsulta == 4){
 			
 				cout << "\nInsira o tipo de imóvel que você deseja pesquisar (1 a 3):\n"
-					<< "1-Casa,\n"
-					<< "2-Apartamento\n"
-					<< "3-Terreno\n";
+					<< "\t1-Casa,\n"
+					<< "\t2-Apartamento\n"
+					<< "\t3-Terreno\n";
+				cout <<"\tResposta: ";
 				cin >> tipoDeImovel;
-				getchar();
 				imoveis = imobiliaria->getImoveisPorTipo(tipoDeImovel);
-				for(Imovel &i: imoveis){
-					cout<<i.getDescricao()<<endl;
-				}
-			}else if(tipodeConsulta==5){
+				
+				ImprimirDescricao(imoveis);
+			}else if(tipodeConsulta == 5){
 			
 				imoveis = imobiliaria->getImoveis();
-				
-				for(Imovel &i: imoveis){
-					cout<<i.getTipoOferta()<<endl;
-				}
+		
+				ImprimirDescricao(imoveis);
 
-			}else if(tipodeConsulta==6){
+			}else if(tipodeConsulta == 6){
 			
 				descricao = imobiliaria->getDescricaoImoveis();
 				for(string &i: descricao){
@@ -110,15 +109,15 @@ int main(void){
 				}
 			}
 
-		}else if(menu==2){
+		}else if(menu == 2){
 			GerenteDePersistencia *escrever;
 			SistemaImobiliaria *imobiliaria;
 			
 			cout<< "Insira o tipo de Imovel que você deseja cadastrar: \n\n";
-			cout <<"     1 - Casa\n";
-			cout <<"     2 - Apartamento\n";
-			cout <<"     3 - Terreno\n";
-			cout << "Resposta: " ;
+			cout <<"\t1 - Casa\n";
+			cout <<"\t2 - Apartamento\n";
+			cout <<"\t3 - Terreno\n";
+			cout << "\tResposta: " ;
 			cin>>tipoDeImovel;
 			getchar();
 
@@ -144,8 +143,6 @@ int main(void){
 			}
 
 			escrever->~GerenteDePersistencia();
-			cout << "passou" << endl;
-		
 		}else if(menu == 3){
 			cout << "Obrigado por utilizar o programa !" << endl;
 			break;

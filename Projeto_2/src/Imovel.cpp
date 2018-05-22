@@ -1,19 +1,28 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "/home/aluno/Documentos/Projeto2/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/Imovel.h"
 
 using namespace std;
 
 //Implementação da classe Imovel:
 
 Imovel::Imovel(){}
-Imovel::Imovel( int tipoDeImovel,int tipoOferta, double valor, const Endereco &endereco)
+Imovel::Imovel(int tipoDeImovel,int tipoOferta, double valor, const Endereco &endereco)
 {
     this->tipoDeImovel = tipoDeImovel;
     this-> tipoOferta = tipoOferta;
     this-> valor = valor;
     this-> endereco = endereco;
+}
+
+Imovel::Imovel(int tipoDeImovel,int tipoOferta, double valor, const Endereco &endereco, string descricao)
+{   
+    this->tipoDeImovel = tipoDeImovel;
+    this->tipoOferta = tipoOferta;
+    this->valor = valor;
+    this->endereco = endereco;
+    this->descricao = descricao;
 }
 
 double Imovel::getValor()
@@ -33,6 +42,9 @@ Endereco Imovel::getEndereco()
 
 int Imovel::getTipoDeImovel(){
     return tipoDeImovel;
+}
+void Imovel::setDescricao(string descricao){
+    this->descricao = descricao;
 }
 
 //Implementação da classe Endereco:
@@ -162,15 +174,6 @@ string Casa::getDescricao(){
 }
 
 
-void Casa::escreveNoArquivo(ofstream &arquivo){  
-    string auxiliar ="";
-    auxiliar+= to_string(tipoDeImovel) +" "+ to_string(valor)+" "+to_string(tipoOferta)+ " ";
-    auxiliar+= endereco.getBairro() +" "+ endereco.getCidade()+ " ";
-    auxiliar+= endereco.getCep() +" "+ to_string(endereco.getNumero()) +" "+ endereco.getLogradouro()+ " ";
-    auxiliar+= to_string(areaConstruida) +" "+ to_string(areaTerreno) +" "+ to_string(numPavimentos)+" "+ to_string(numQuartos)+ " ";
-    arquivo << auxiliar;
-}
-
 //Implementação da classe Apartamento:
 Apartamento::Apartamento() : Imovel(){}
 Apartamento::Apartamento(string posicao, 
@@ -231,30 +234,20 @@ double Apartamento::getArea(){
 string Apartamento::getDescricao(){
     string descricao = "*****************************************************************\n";
     if(imovel_para_alugar == tipoOferta){
-        descricao += "Aluga-se Casa " +  to_string(endereco.getNumero()) + " || Rua: " + endereco.getLogradouro()+ "\n";  
-        descricao += "Valor do Aluguel = RS " + to_string(valor) + "\n";
+        descricao += "Aluga-se Apartamento " +  to_string(endereco.getNumero()) + " || Rua: " + endereco.getLogradouro()+ "\n";  
+        descricao += "Valor do Aluguel = RS " + to_string(valor) + " | " ;
     }else if(imovel_para_vender == tipoOferta){
-        descricao += "Vende-se Casa " +  to_string(endereco.getNumero()) + " || Rua: " + endereco.getLogradouro()+ "\n";      
-        descricao += "Valor de Venda = RS " + to_string(valor)+ "\n";
+        descricao += "Vende-se Apartamento " +  to_string(endereco.getNumero()) + " || Rua: " + endereco.getLogradouro()+ "\n";      
+        descricao += "Valor de Venda = RS " + to_string(valor)+ " | " ;
     }
     descricao += "Valor do Condominio = RS "+ to_string(valorCondominio) + "\n";
     descricao += "\nNumero de quartos: " + to_string(numQuartos) + " | Vagas na Garagem: " + to_string(vagasGaragem) + "\n";
-    descricao += "Area do terreno: " + to_string(area) + " | Posicao: " + posicao + "\n";
+    descricao += "Area: " + to_string(area) + " | Posicao: " + posicao + "\n";
     descricao += "*****************************************************************\n";
     
     return descricao;
 }
 
-
-
-void Apartamento::escreveNoArquivo(ofstream &arquivo){
-    string auxiliar = "";
-    auxiliar+= to_string(tipoDeImovel) + " " + to_string(valor) +" "+to_string(tipoOferta)+ " ";
-    auxiliar+= endereco.getBairro() +" "+ endereco.getCidade()+ " ";
-    auxiliar+= endereco.getCep() +" "+ to_string(endereco.getNumero()) +" "+ endereco.getLogradouro()+ " ";
-    auxiliar+= posicao +" "+ to_string(numQuartos) +" "+to_string(vagasGaragem)+ " " +  to_string(area)+" "+ to_string(valorCondominio)+" ";
-    arquivo << auxiliar;
-}
 
 //Implementação da classe Terreno:
 Terreno::Terreno() : Imovel(){}
@@ -288,14 +281,5 @@ string Terreno::getDescricao(){
     descricao += "\nArea : "+to_string(area)+ "\n";
     descricao += "*****************************************************************\n";
     return descricao;
-}
-
-void Terreno::escreveNoArquivo(ofstream &arquivo){
-    string auxiliar ="";
-    auxiliar+= to_string(tipoDeImovel) +" "+ to_string(valor)+" "+to_string(tipoOferta) + " ";
-    auxiliar+= endereco.getBairro() +" "+ endereco.getCidade()+ " ";
-    auxiliar+= endereco.getCep() +" "+ to_string(endereco.getNumero()) +" "+ endereco.getLogradouro()+" ";
-    auxiliar+= to_string(area)+ " ";
-    arquivo << auxiliar;
 }
 

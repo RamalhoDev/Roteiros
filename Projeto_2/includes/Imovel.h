@@ -38,27 +38,32 @@ class Imovel{
         int tipoOferta, tipoDeImovel;
         double valor;
         Endereco endereco;
-
+        string descricao;
     public:    
 
         Imovel();
-        Imovel(int tipoDeImovel,
+        Imovel(
+               int tipoDeImovel,
                int tipoOferta, 
                double valor, 
                const Endereco &endereco);
+        Imovel(
+               int tipoDeImovel,
+               int tipoOferta, 
+               double valor, 
+               const Endereco &endereco,
+               string descricao);
         virtual ~Imovel(){}
 
         void setValor(double valor);
         void setTipoOferta(int tipoOferta);
+        void setDescricao(string descricao);
     
         double getValor();
         int getTipoOferta();
         Endereco getEndereco();
         int getTipoDeImovel();
-        virtual string getDescricao(){return 0;}
-
-        virtual void escreveNoArquivo(ofstream &arquivo){}
-        virtual void cadastrarImoveis(){}
+        virtual string getDescricao(){return descricao;}
 };
 
 
@@ -88,8 +93,6 @@ class Casa: public Imovel{
         int getNumQuartos();
         double getAreaTerreno();
         double getAreaConstruida();
-
-        void escreveNoArquivo(ofstream &arquivo);
 };
 
 class Apartamento: public Imovel{
@@ -99,10 +102,10 @@ class Apartamento: public Imovel{
         double valorCondominio, area;
     public:
         Apartamento();
-        Apartamento(string posicao, 
-                    int numQuartos, 
+        Apartamento(string posicao,
+                    int numQuartos,
                     int vagasGaragem, 
-                    double valorCondominio, 
+                    double valorConominio, 
                     double area,
                     int tipoOferta,
                     int tipoDeImovel, 
@@ -122,8 +125,7 @@ class Apartamento: public Imovel{
         int getVagasGaragem();
         double getValorCondominio();
         double getArea();
-        
-        void escreveNoArquivo(ofstream &arquivo);
+
 };
 
 class Terreno: public Imovel{
@@ -142,8 +144,6 @@ class Terreno: public Imovel{
 
         string getDescricao();
         double getArea();
-
-        void escreveNoArquivo(ofstream &arquivo);
 };
 
 #endif

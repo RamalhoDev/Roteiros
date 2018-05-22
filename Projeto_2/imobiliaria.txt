@@ -1,2 +1,44 @@
+TREZE DE MAIO
+JOAO PESSOA
+58025380
+SAID ABEL
+37
+1
+1
+250000
+*****************************************************************
+Vende-se Casa 37 || Rua: SAID ABEL
+Valor de Venda = RS 250000.000000
 
-1 200000.000000 0 treze de maio joao pessoa 58025380 37 said abel 100.000000 200.000000 4 22 2000.000000 1 miramar joao pessoa 58038242 123 epitacio nascente sul 2 2 200.000000 1000.000000 3 20000.000000 0 asdasd asdasd 123123 1123 asdasd 500.000000 
+Numero de quartos: 3 | Número de Pavimentos: 4
+Area do terreno: 100.000000 | Area Construida: 80.000000
+*****************************************************************
+MIRAMAR
+JOAO PESSOA
+58025-000
+EPITACIO PESSOA
+40
+0
+2
+3000
+*****************************************************************
+Aluga-se Apartamento 40 || Rua: EPITACIO PESSOA
+Valor do Aluguel = RS 3000.000000 | Valor do Condominio = RS 450.000000
+
+Numero de quartos: 4 | Vagas na Garagem: 3
+Area: 100.000000 | Posicao: nascente sul
+*****************************************************************
+TREZE DE MAIO
+JOAO PESSOA
+58025430
+RUA PREFEITO JOSE DE CARVALHO
+100
+1
+3
+25000
+*****************************************************************
+Vende-se Terreno 100 || Rua: RUA PREFEITO JOSE DE CARVALHO
+Valor de Venda = RS 25000.000000
+
+Area : 50.000000
+*****************************************************************
