@@ -24,8 +24,8 @@ class SistemaImobiliaria{ //Classe Sistema Imobiliaria, Onde são Criado as List
         Terreno* cadastrarTerreno(Endereco endereco, int tipoDeImovel);         //Cadastramento de Terreno
         Flat* cadastrarFlat(Apartamento* apartamento);                          //Cadastramento de Flat
         Studio* cadastrarStudio(Flat *flat);                                    //Cadastramento de Studio
-        bool ToUpper(string entrada, string atributo);
-        Endereco cadastrarEndereco();
+        bool ToUpper(string entrada, string atributo);                          //Compara
+        Endereco cadastrarEndereco();                                           
 };
 
 #endif
