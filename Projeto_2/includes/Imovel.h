@@ -5,25 +5,31 @@
 
 using namespace std;
 
+//Objeto Endereço possui informacoes comuns a todos os imoveis
 class Endereco{
     protected:
         string logradouro, bairro, cidade, cep;
         int numero;
     public:
+        //Informações
         Endereco();
         Endereco(string logradouro, 
                  string bairro, 
                  string cidade, 
                  string cep, 
                  int numero);
+    
+        //Destroi o objeto
         virtual ~Endereco(){}
-
+        
+        //Ler essas informações
         string getLogradouro();
         string getBairro();
         string getCidade();
         string getCep();
         int getNumero();
-
+    
+        //Seta as variaves do endereço com a string inserida
         void setLogradouro(string logradouro);
         void setBairro(string bairro);
         void setCidade(string cidade);
@@ -31,9 +37,11 @@ class Endereco{
         void setNumero(int numero);
 };
 
-
+//Classe que especifica o que o usuario deseja fazer no programa
 class Imovel{
+    //Classe Pai
     protected:
+    //Variaveis de ação
         static const int imovel_para_vender = 1;
         static const int imovel_para_alugar = 0;
         int tipoOferta, tipoDeImovel;
@@ -41,7 +49,7 @@ class Imovel{
         Endereco endereco;
         string descricao;
     public:    
-
+    //Torna público o tipo de imovel, o tipo de oferta, o valor e a const do endereço
         Imovel();
         Imovel(
                int tipoDeImovel,
@@ -54,21 +62,29 @@ class Imovel{
                double valor, 
                const Endereco &endereco,
                string descricao);
+    
+        //Destroi o objeto
         virtual ~Imovel(){}
-
+    
+        //Seta as variaves do endereço com os caracteres inseridos
         void setValor(double valor);
         void setTipoOferta(int tipoOferta);
         void setDescricao(string descricao);
     
+        //Cadastra o valor, oferta, o endereco e o tipo de imovel
         double getValor();
         int getTipoOferta();
         Endereco getEndereco();
         int getTipoDeImovel();
+        
         virtual string getDescricao(){return descricao;}
 };
 
 
 class Casa: public Imovel{
+    //Classe filho do imovel
+    
+    //Variaveis de uma casa 
     private:
         int numPavimentos, numQuartos;
         double areaTerreno, areaConstruida;
@@ -82,13 +98,17 @@ class Casa: public Imovel{
             int tipoDeImovel, 
             double valor, 
             const Endereco &endereco);
+    
+        //Destrutor
         virtual ~Casa(){}
 
+         //Seta as variaves do endereço com os valores inseridos
         void setNumPavimentos(int numPavimentos);
         void setNumQuartos(int numQuartos);
         void setAreaTerreno(double areaTerreno);
         void setAreaConstruida(double areaConstruida);
 
+        //Recebe o valores inseridos como um GET
         string getDescricao();
         int getNumPavimentos();
         int getNumQuartos();
@@ -97,6 +117,9 @@ class Casa: public Imovel{
 };
 
 class Apartamento: public Imovel{
+    //Classe filho do imovel
+    
+    //Variaveis da classe
     protected:
         string posicao;
         int numQuartos, vagasGaragem;
@@ -113,13 +136,15 @@ class Apartamento: public Imovel{
                     double valor, 
                     const Endereco &endereco);
         virtual ~Apartamento(){}
-
+    
+        //Seta as informações
         void setPosicao(string posicao);
         void setNumQuartos(int numQuartos);
         void setVagasGaragem(int vagasGaragem);
         void setValorCondominio(double valorCondominio);
         void setArea(double area);
-
+        
+        //Ler as entradas
         string getDescricao();
         string getPosicao();
         int getNumQuartos();
@@ -130,6 +155,9 @@ class Apartamento: public Imovel{
 };
 
 class Terreno: public Imovel{
+     //Classe filho do imovel
+    
+    //Variaveis da classe
     private:
         double area;
     public:
@@ -139,15 +167,20 @@ class Terreno: public Imovel{
                 int tipoDeImovel, 
                 double valor, 
                 const Endereco &endereco);
+    
+        //Destrutor
         virtual ~Terreno(){}
-
+        
+       //Insere o valor da area
         void setArea(double area);
-
+        
+        //Ler as entradas
         string getDescricao();
         double getArea();
 };
 
-class Flat: public Apartamento{
+class Flat: public Apartamento{ 
+    //Classe Flat Herdeiro de Apartamento
     protected:
         string ar, internet, tv, lavanderia, limpeza, recepcao;
     public:
@@ -167,7 +200,11 @@ class Flat: public Apartamento{
              int tipoDeImovel, 
              double valor, 
              const Endereco &endereco);
+    
+        //Destutor
         virtual ~Flat(){}
+    
+        //Ler as entradas
         string getAr();
         string getInternet();
         string getTv();
@@ -175,6 +212,7 @@ class Flat: public Apartamento{
         string getLimpeza();
         string getRecepcao();
 
+        //Seta as informações
         void setAr(string ar);
         void setInternet(string internet);
         void setTv(string tv);
@@ -185,7 +223,8 @@ class Flat: public Apartamento{
         string getDescricao();
 };
 
-class Studio: public Flat{
+class Studio: public Flat{ 
+    //Classe Studio Herdeiro de Flat
     private:
         string piscina, sauna, ginastica;
     public:
@@ -208,11 +247,16 @@ class Studio: public Flat{
                 int tipoDeImovel, 
                 double valor, 
                 const Endereco &endereco);
+    
+        //Destroi
         virtual ~Studio(){}
+    
+        //Ler as entradas
         string getPiscina();
         string getSauna();
         string getGinastica();
 
+        //Seta as informações
         void setPiscina(string piscina);
         void setSauna(string sauna);
         void setGinastica(string ginastica);
