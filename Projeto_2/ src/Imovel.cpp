@@ -1,13 +1,13 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h" //Imovel.h
 
 using namespace std;
 
 //Implementação da classe Imovel:
 
-Imovel::Imovel(){}
+Imovel::Imovel(){} //Construtor da Classe Imovel
 Imovel::Imovel(int tipoDeImovel,int tipoOferta, double valor, const Endereco &endereco)
 {
     this->tipoDeImovel = tipoDeImovel;
@@ -55,7 +55,7 @@ void Imovel::setDescricao(string descricao){
 //Implementação da classe Endereco:
 
 Endereco::Endereco() {}
-Endereco::Endereco(string logradouro, string bairro, string cidade, string cep, int numero)
+ Endereco::Endereco(string logradouro, string bairro, string cidade, string cep, int numero)
 {
     this-> logradouro = logradouro;
     this-> bairro = bairro;
