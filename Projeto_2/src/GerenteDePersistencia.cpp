@@ -2,29 +2,34 @@
 #include <string>
 #include <fstream>
 #include <list>
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"                   //"Imovel.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"    //"GerenteDePersistencia.h"
 using namespace std;
 
 list <Imovel> GerenteDePersistencia::recuperaListaImoveis(){
     list <Imovel> imoveis;
     ifstream arquivo;
+    //Abre o arquivo
     arquivo.open("imobiliaria.txt", ios::in);
+    
+    //Cria variaveis
     int  numero,tipoDeOferta,tipoDeImovel, tamanho;
     string logradouro, bairro, cidade, cep,auxiliar; 
     double valor;
     Imovel lerImovel;
     Endereco endereco;
     
-
+    //Pesquisa 
     while(arquivo.good()){
         string descricao = "";
         
+        //Ler o bairro, cidade, cep e logradouro
         getline(arquivo, bairro);
         getline(arquivo, cidade);
         getline(arquivo, cep);
         getline(arquivo, logradouro);
     
+        //Pega os dados do  arquivo e salva nas variaveis
         arquivo >> numero;
         arquivo >> tipoDeOferta;
         arquivo >> tipoDeImovel;
