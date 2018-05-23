@@ -192,7 +192,7 @@ string Casa::getDescricao(){
 
 //Implementação da classe Apartamento:
 
-Apartamento::Apartamento() : Imovel(){}
+Apartamento::Apartamento() : Imovel(){} //Construtor de Apartamento
 Apartamento::Apartamento(string posicao, 
                           int numQuartos, 
                           int vagasGaragem, 
@@ -248,7 +248,7 @@ double Apartamento::getValorCondominio(){
 double Apartamento::getArea(){
     return area;
 }
-string Apartamento::getDescricao(){
+string Apartamento::getDescricao(){ 
     string descricao = "*****************************************************************\n";
     if(imovel_para_alugar == tipoOferta){
         descricao += "Aluga-se Apartamento " +  to_string(endereco.getNumero()) + " || Rua: " + endereco.getLogradouro()+ "\n";  
@@ -272,7 +272,7 @@ string Apartamento::getDescricao(){
 
 
 //Implementação da classe Terreno:
-Terreno::Terreno() : Imovel(){}
+Terreno::Terreno() : Imovel(){} //Construtor de Terreno
 
 Terreno::Terreno(double area,
                   int tipoOferta,
@@ -311,7 +311,7 @@ string Terreno::getDescricao(){
 
 
 
-Flat::Flat():Apartamento(){}
+Flat::Flat():Apartamento(){} //Construtor de Flat
 Flat::Flat(string ar,
         string internet,
         string tv,
@@ -409,7 +409,7 @@ string Flat::getDescricao(){
 
 
 
-Studio::Studio():Flat(){}
+Studio::Studio():Flat(){} //Construtor de Studio
 Studio::Studio( string piscina,
                 string sauna,
                 string ginastica,
