@@ -7,7 +7,9 @@ using namespace std;
 
 //Implementação da classe Imovel:
 
-Imovel::Imovel(){} //Construtor da Classe Imovel
+Imovel::Imovel(){} 
+
+//Construtor da Classe Imovel
 Imovel::Imovel(int tipoDeImovel,int tipoOferta, double valor, const Endereco &endereco)
 {
     this->tipoDeImovel = tipoDeImovel;
@@ -25,30 +27,33 @@ Imovel::Imovel(int tipoDeImovel,int tipoOferta, double valor, const Endereco &en
     this->descricao = descricao;
 }
 
+//Ler o valor do imovel
 double Imovel::getValor()
 {
     return valor;
 }
 
+//Ler o tipo de oferta
 int Imovel::getTipoOferta()
 {
     return tipoOferta;
 }
 
+//Ler todas as inforções do endreço
 Endereco Imovel::getEndereco()
 {
     return endereco;
 }
 
+//Ler  tipo do imovel
 int Imovel::getTipoDeImovel(){
     return tipoDeImovel;
 }
+
+//Imprime a descrição do imovel
 void Imovel::setDescricao(string descricao){
     this->descricao = descricao;
 }
-
-
-
 
 
 
@@ -64,42 +69,52 @@ Endereco::Endereco() {}
     this-> numero = numero;
 }
 
+//Ler o logradouro
 string Endereco::getLogradouro()
 {
     return logradouro;
 }
 
+//Ler  o bairro
 string Endereco::getBairro()
 {
     return bairro;
 }
 
+//Ler a cidade
 string Endereco::getCidade()
 {
     return cidade;
 }
 
+//Ler o cep
 string Endereco::getCep()
 {
     return cep;
 }
-
+//Ler o numero o imovel
 int Endereco::getNumero()
 {
     return numero;
 }
+
+//Define o logradouro
 void Endereco::setLogradouro(string logradouro){
     this -> logradouro = logradouro;
 }
+//Define o bairro
 void Endereco::setBairro(string bairro){
     this -> bairro = bairro;
 }
+//Define a cidade
 void Endereco::setCidade(string cidade){
     this -> cidade = cidade;
 }
+//Define o cep 
 void Endereco::setCep(string cep){
     this -> cep = cep;
 }
+//Define o numero do imovel
 void Endereco::setNumero(int numero){
     this -> numero = numero;
 }
