@@ -2,40 +2,43 @@
 #include <string>
 #include <fstream>
 #include <list>
-#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/Imovel.h"
-#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
 using namespace std;
 
 list <Imovel> GerenteDePersistencia::recuperaListaImoveis(){
     list <Imovel> imoveis;
     ifstream arquivo;
     arquivo.open("imobiliaria.txt", ios::in);
+    int  numero,tipoDeOferta,tipoDeImovel, tamanho;
+    string logradouro, bairro, cidade, cep,auxiliar; 
+    double valor;
+    Imovel lerImovel;
+    Endereco endereco;
+    
 
-    while(!arquivo.eof()){
-        string logradouro, bairro, cidade, cep, descricao = "", auxiliar;
-        int  numero,tipoDeOferta,tipoDeImovel;
-        double valor;
+    while(arquivo.good()){
+        string descricao = "";
         
-        Imovel lerImovel;
-        Endereco endereco;
-        
-        getline(arquivo, logradouro);
         getline(arquivo, bairro);
         getline(arquivo, cidade);
         getline(arquivo, cep);
+        getline(arquivo, logradouro);
+    
         arquivo >> numero;
         arquivo >> tipoDeOferta;
         arquivo >> tipoDeImovel;
         arquivo >> valor;
-        
-        for(int i = 0; i<8; i++){
-           getline(arquivo, auxiliar);
-           descricao+=auxiliar+"\n";
+
+        while(1){
+            getline(arquivo, auxiliar);
+             if(!auxiliar.compare("-1"))
+                break;
+            descricao+= auxiliar+"\n";
         }
 
         endereco = Endereco(logradouro, bairro, cidade, cep, numero);
         lerImovel = Imovel(tipoDeImovel,tipoDeOferta,valor,endereco, descricao);
-        
         imoveis.push_back(lerImovel);
     }
 
@@ -63,8 +66,9 @@ void GerenteDePersistencia::salvaListaImoveis(Imovel *imovel){
     arquivo<<"\n";
     arquivo<< imovel->getValor();
     arquivo<<"\n";
-    arquivo << imovel->getDescricao();
-    
+    arquivo<< imovel->getDescricao();
+    arquivo<< -1;
+    arquivo<<"\n";
     arquivo.close();
 }
 

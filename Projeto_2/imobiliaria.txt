@@ -1,47 +1,3 @@
-TREZE DE MAIO
-JOAO PESSOA
-58025380
-SAID ABEL
-37
-1
-1
-250000
-*****************************************************************
-Vende-se Casa 37 || Rua: SAID ABEL
-Valor de Venda = RS 250000.000000
-
-Numero de quartos: 3 | Número de Pavimentos: 4
-Area do terreno: 100.000000 | Area Construida: 80.000000
-*****************************************************************
-MIRAMAR
-JOAO PESSOA
-58025-000
-EPITACIO PESSOA
-40
-0
-2
-3000
-*****************************************************************
-Aluga-se Apartamento 40 || Rua: EPITACIO PESSOA
-Valor do Aluguel = RS 3000.000000 | Valor do Condominio = RS 450.000000
-
-Numero de quartos: 4 | Vagas na Garagem: 3
-Area: 100.000000 | Posicao: nascente sul
-*****************************************************************
-TREZE DE MAIO
-JOAO PESSOA
-58025430
-RUA PREFEITO JOSE DE CARVALHO
-100
-1
-3
-25000
-*****************************************************************
-Vende-se Terreno 100 || Rua: RUA PREFEITO JOSE DE CARVALHO
-Valor de Venda = RS 25000.000000
-
-Area : 50.000000
-*****************************************************************
 treze de maio
 joao pessoa
 58025380
@@ -49,25 +5,62 @@ said abel
 37
 1
 1
-250000
+10000
 *****************************************************************
 Vende-se Casa 37 || Rua: said abel
-Valor de Venda = RS 250000.000000
+Valor de Venda = RS 10000.000000
 
 Numero de quartos: 2 | Número de Pavimentos: 4
 Area do terreno: 100.000000 | Area Construida: 70.000000
 *****************************************************************
-manaira
+-1
+miramar
 joao pessoa
-58025380
-manaira
+58025000
+epitacio
+40
+1
+4
+1e+06
+*****************************************************************
+Vende-se Flat 40 || Rua: epitacio
+Valor de Venda = RS 1000000.000000 | Valor do Condominio = RS 500.000000
+Numero de quartos: 4 | Vagas na Garagem: 3
+Area: 70.000000 | Posicao: nascente
+Ar-condicionado: S | Internet: S | Lavanderia: S
+Recepcao: S | Limpeza: S
+*****************************************************************
+-1
+bancarios
+joao pessoa
+58024000
+bancarios
+123
+1
+5
+150000
+*****************************************************************
+Vende-se Studio 123 || Rua: bancarios
+Valor de Venda = RS 150000.000000 | Valor do Condominio = RS 0.000000
+Numero de quartos: 4 | Vagas na Garagem: 2
+Area: 50.000000 | Posicao: nascente norte
+Ar-condicionado: S | Internet: S | Lavanderia: S
+Recepcao: S | Limpeza: S
+Piscina: S | Sauna: S | Sala de Ginastica: S
+*****************************************************************
+-1
+altiplano
+joao pessoa
+5800000
+altiplano
 123
 0
 3
 1e+06
 *****************************************************************
-Aluga-se Terreno 123 || Rua: manaira
+Aluga-se Terreno 123 || Rua: altiplano
 Valor do Aluguel = RS 1000000.000000
 
-Area : 700.000000
+Area : 70.000000
 *****************************************************************
+-1

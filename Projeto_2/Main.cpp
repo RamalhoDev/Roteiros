@@ -1,16 +1,35 @@
 #include <iostream>
 #include <string>
-#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
-#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/Imovel.h"
-#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
 
 using namespace std;
 
-
+//Imprime a descrição do Imovel
 void ImprimirDescricao(list <Imovel> data){
+	
 	for(Imovel &i: data){
 		cout<<i.getDescricao()<<endl;
 	}
+
+}
+
+//Menu para seleção do tipo de Imovel
+int Selecao(){
+	int tipoDeImovel;
+
+	cout << "\nInsira o tipo de imóvel que você deseja pesquisar (1 a 5):\n"
+		<< "\t1 - Casa,\n"
+		<< "\t2 - Apartamento\n"
+		<< "\t3 - Terreno\n"
+		<< "\t4 - Flat\n"
+		<< "\t5 - Studio\n";
+	cout <<"\tResposta: ";
+
+	cin >> tipoDeImovel;
+	getchar();
+	return tipoDeImovel;
 }
 
 int main(void){
@@ -35,21 +54,20 @@ int main(void){
 		getchar();
 
 		if(menu == 1){
-
 			list<Imovel> imoveis;
-			list<string> descricao;
-			list<Imovel> ::iterator it;
-			list<string> ::iterator s;
+
 			cout<<"Quais imoveis gostaria de consultar?\n";
 			
 			cout<<"\t1 - Imoveis para Alugar por Bairro\n" << 
-				"\t2 - Imovel para Vender por Bairro\n" << 
-				"\t3 - Imovel por Cidade\n"<< 
-				"\t4 - Imoveis por Tipo\n"<<
-				"\t5 - Todos os imoveis\n"<<
-				"\t6 - Descrição de todos os imoveis\n";
+				  "\t2 - Imovel para Vender por Bairro\n" << 
+				  "\t3 - Imovel por Cidade\n"<< 
+				  "\t4 - Imoveis por Tipo\n"<<
+				  "\t5 - Todos os imoveis\n"<<
+				  "\t6 - Imoveis para alugar por Tipo\n";
+			
 			cout<< "\t\tResposta: ";
 			cin >> tipodeConsulta;
+			
 			getchar();
 
 			if(tipodeConsulta == 1){
@@ -57,14 +75,13 @@ int main(void){
 				cout << "\t\tInsira o bairro desejado: ";
 				getline(cin,auxiliar);
 				imoveis =imobiliaria->getImoveisParaAlugarPorBairro(auxiliar);
-			
 				ImprimirDescricao(imoveis);
+
 			}else if(tipodeConsulta == 2){
 			
 				cout << "\t\tInsira o bairro desejado: ";
 				getline(cin,auxiliar);
 				imoveis = imobiliaria->getImoveisParaVenderPorBairro(auxiliar);
-				
 				ImprimirDescricao(imoveis);
 
 			}else if(tipodeConsulta == 3){
@@ -72,43 +89,30 @@ int main(void){
 				cout << "\t\tInsira a cidade desejada: ";
 				getline(cin,auxiliar);
 				imoveis = imobiliaria->getImoveisPorCidade(auxiliar);	
-				
 				ImprimirDescricao(imoveis);
+
 			}else if(tipodeConsulta == 4){
-			
-				cout << "\nInsira o tipo de imóvel que você deseja pesquisar (1 a 3):\n"
-					<< "\t1-Casa,\n"
-					<< "\t2-Apartamento\n"
-					<< "\t3-Terreno\n";
-				cout <<"\tResposta: ";
-				cin >> tipoDeImovel;
+
+				tipoDeImovel = Selecao();
 				imoveis = imobiliaria->getImoveisPorTipo(tipoDeImovel);
 				ImprimirDescricao(imoveis);
-			}else if(tipodeConsulta == 5){
 			
+			}else if(tipodeConsulta == 5){
+
 				imoveis = imobiliaria->getImoveis();
-		
 				ImprimirDescricao(imoveis);
 
 			}else if(tipodeConsulta == 6){
-			
-				descricao = imobiliaria->getDescricaoImoveis();
-				for(string &i: descricao){
-					cout<<i<<endl;
-				}
+				
+				tipoDeImovel = Selecao();
+				imoveis = imobiliaria->getImoveisPorTipoParaAlugar(tipoDeImovel);
+				ImprimirDescricao(imoveis);
 			}
 
 		}else if(menu == 2){
+
 			GerenteDePersistencia *escrever;
-			SistemaImobiliaria *imobiliaria;
-			
-			cout<< "Insira o tipo de Imovel que você deseja cadastrar: \n\n";
-			cout <<"\t1 - Casa\n";
-			cout <<"\t2 - Apartamento\n";
-			cout <<"\t3 - Terreno\n";
-			cout << "\tResposta: " ;
-			cin>>tipoDeImovel;
-			getchar();
+			tipoDeImovel = Selecao();
 
 			if(tipoDeImovel == 1){
 
@@ -129,6 +133,19 @@ int main(void){
 				terreno = imobiliaria->cadastrarTerreno(imobiliaria->cadastrarEndereco(), tipoDeImovel);
 				escrever->salvaListaImoveis(terreno);
 				terreno->~Terreno();
+			}
+			else if(tipoDeImovel == 4){
+
+				Flat *flat;
+				flat = imobiliaria->cadastrarFlat(imobiliaria->cadastrarApartamento(imobiliaria->cadastrarEndereco(), tipoDeImovel));
+				escrever->salvaListaImoveis(flat);
+				flat->~Flat();
+			
+			}else if(tipoDeImovel == 5){
+				Studio *studio;
+				studio = imobiliaria->cadastrarStudio(imobiliaria->cadastrarFlat(imobiliaria->cadastrarApartamento(imobiliaria->cadastrarEndereco(), tipoDeImovel)));
+				escrever->salvaListaImoveis(studio);
+				studio->~Studio();
 			}
 
 			escrever->~GerenteDePersistencia();

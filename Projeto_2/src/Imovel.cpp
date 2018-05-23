@@ -1,7 +1,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
 
 using namespace std;
 
@@ -46,6 +46,11 @@ int Imovel::getTipoDeImovel(){
 void Imovel::setDescricao(string descricao){
     this->descricao = descricao;
 }
+
+
+
+
+
 
 //Implementação da classe Endereco:
 
@@ -98,6 +103,11 @@ void Endereco::setCep(string cep){
 void Endereco::setNumero(int numero){
     this -> numero = numero;
 }
+
+
+
+
+
 
 //Implementação da classe Casa:
 
@@ -174,7 +184,14 @@ string Casa::getDescricao(){
 }
 
 
+
+
+
+
+
+
 //Implementação da classe Apartamento:
+
 Apartamento::Apartamento() : Imovel(){}
 Apartamento::Apartamento(string posicao, 
                           int numQuartos, 
@@ -249,6 +266,11 @@ string Apartamento::getDescricao(){
 }
 
 
+
+
+
+
+
 //Implementação da classe Terreno:
 Terreno::Terreno() : Imovel(){}
 
@@ -282,4 +304,190 @@ string Terreno::getDescricao(){
     descricao += "*****************************************************************\n";
     return descricao;
 }
+
+
+
+
+
+
+
+Flat::Flat():Apartamento(){}
+Flat::Flat(string ar,
+        string internet,
+        string tv,
+        string lavanderia,
+        string limpeza,
+        string recepcao,
+        string posicao,
+        int numQuartos,
+        int vagasGaragem, 
+        double valorCondominio, 
+        double area,
+        int tipoOferta,
+        int tipoDeImovel, 
+        double valor, 
+        const Endereco &endereco):Apartamento(posicao, 
+                                              numQuartos, 
+                                              vagasGaragem, 
+                                              valorCondominio, 
+                                              area, 
+                                              tipoOferta, 
+                                              tipoDeImovel, 
+                                              valor, 
+                                              endereco){
+
+                                                this-> ar = ar;
+                                                this-> internet = internet;
+                                                this-> tv = tv;
+                                                this-> lavanderia = lavanderia;
+                                                this-> limpeza = limpeza;
+                                                this-> recepcao = recepcao;
+                                                
+    }
+string Flat::getAr(){
+    return ar;
+}
+string Flat::getInternet(){
+    return internet;
+}
+string Flat::getTv(){
+    return tv;
+}
+string Flat::getLavanderia(){
+    return lavanderia;
+}
+string Flat::getLimpeza(){
+    return limpeza;
+}
+string Flat::getRecepcao(){
+    return recepcao;
+}
+
+void Flat::setAr(string ar){
+    this-> ar = ar;
+}
+void Flat::setInternet(string internet){
+    this-> internet = internet;
+}
+void Flat::setTv(string tv){
+    this-> tv = tv;
+}
+void Flat::setLavanderia(string lavanderia){
+    this-> lavanderia = lavanderia;
+}
+void Flat::setLimpeza(string limpeza){
+    this-> limpeza = limpeza;
+}
+void Flat::setRecepcao(string recepcao){
+    this-> recepcao = recepcao;
+}
+
+string Flat::getDescricao(){
+    
+    string descricao = "*****************************************************************\n";
+    
+    if(imovel_para_alugar == tipoOferta){
+        descricao += "Aluga-se Flat " +  to_string(endereco.getNumero()) + " || Rua: " + endereco.getLogradouro()+ "\n";  
+        descricao += "Valor do Aluguel = RS " + to_string(valor) + " | " ;
+    }else if(imovel_para_vender == tipoOferta){
+        descricao += "Vende-se Flat " +  to_string(endereco.getNumero()) + " || Rua: " + endereco.getLogradouro()+ "\n";      
+        descricao += "Valor de Venda = RS " + to_string(valor)+ " | " ;
+    }
+
+    descricao += "Valor do Condominio = RS "+ to_string(valorCondominio) + "\n";
+    descricao += "Numero de quartos: " + to_string(numQuartos) + " | Vagas na Garagem: " + to_string(vagasGaragem) + "\n";
+    descricao += "Area: " + to_string(area) + " | Posicao: " + posicao + "\n";
+    descricao += "Ar-condicionado: "+ ar + " | Internet: "+ internet +" | Lavanderia: "+ lavanderia +"\n";
+    descricao += "Recepcao: "+recepcao+ " | Limpeza: " + limpeza+ "\n";
+    descricao += "*****************************************************************\n";
+    
+    return descricao;
+}
+
+
+
+
+
+
+Studio::Studio():Flat(){}
+Studio::Studio( string piscina,
+                string sauna,
+                string ginastica,
+                string ar,
+                string internet,
+                string tv,
+                string lavanderia,
+                string limpeza,
+                string recepcao,
+                string posicao,
+                int numQuartos,
+                int vagasGaragem, 
+                double valorConominio, 
+                double area,
+                int tipoOferta,
+                int tipoDeImovel, 
+                double valor, 
+                const Endereco &endereco):Flat( ar, 
+                                                internet,
+                                                tv, 
+                                                lavanderia, 
+                                                limpeza, 
+                                                recepcao,
+                                                posicao, 
+                                                numQuartos, 
+                                                vagasGaragem, 
+                                                valorCondominio, 
+                                                area, 
+                                                tipoOferta, 
+                                                tipoDeImovel, 
+                                                valor,
+                                                endereco){
+                                                    this->piscina = piscina;
+                                                    this->sauna = sauna;
+                                                    this->ginastica = ginastica;
+                                                }
+
+string Studio::getPiscina(){
+    return piscina;
+}
+string Studio::getSauna(){
+    return sauna;
+}
+string Studio::getGinastica(){
+    return ginastica;
+}
+
+void Studio::setPiscina(string piscina){
+    this->piscina = piscina;
+}
+void Studio::setSauna(string sauna){
+    this->sauna = sauna;
+}
+void Studio::setGinastica(string ginastica){
+    this->ginastica = ginastica;
+}
+
+string Studio::getDescricao(){
+    
+    string descricao = "*****************************************************************\n";
+    
+    if(imovel_para_alugar == tipoOferta){
+        descricao += "Aluga-se Studio " +  to_string(endereco.getNumero()) + " || Rua: " + endereco.getLogradouro()+ "\n";  
+        descricao += "Valor do Aluguel = RS " + to_string(valor) + " | " ;
+    }else if(imovel_para_vender == tipoOferta){
+        descricao += "Vende-se Studio " +  to_string(endereco.getNumero()) + " || Rua: " + endereco.getLogradouro()+ "\n";      
+        descricao += "Valor de Venda = RS " + to_string(valor)+ " | " ;
+    }
+    
+    descricao += "Valor do Condominio = RS "+ to_string(valorCondominio) + "\n";
+    descricao += "Numero de quartos: " + to_string(numQuartos) + " | Vagas na Garagem: " + to_string(vagasGaragem) + "\n";
+    descricao += "Area: " + to_string(area) + " | Posicao: " + posicao + "\n";
+    descricao += "Ar-condicionado: "+ ar + " | Internet: "+ internet +" | Lavanderia: "+ lavanderia +"\n";
+    descricao += "Recepcao: "+recepcao+ " | Limpeza: " + limpeza+ "\n";
+    descricao += "Piscina: "+piscina+" | Sauna: "+sauna+" | Sala de Ginastica: "+ginastica+"\n";
+    descricao += "*****************************************************************\n";
+    
+    return descricao;
+}
+
 

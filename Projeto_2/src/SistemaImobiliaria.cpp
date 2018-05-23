@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
-#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
-#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
-#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
 
 using namespace std;
 
@@ -10,24 +10,15 @@ SistemaImobiliaria::SistemaImobiliaria(){}
 SistemaImobiliaria::~SistemaImobiliaria(){}
 
 list <Imovel> SistemaImobiliaria:: getImoveis(){
+
     GerenteDePersistencia recupera;
     list<Imovel> imovel = recupera.recuperaListaImoveis();
     return imovel;
-}
 
-list <string> SistemaImobiliaria:: getDescricaoImoveis(){
-    GerenteDePersistencia recupera;
-    list <Imovel> imovel = recupera.recuperaListaImoveis();
-    list <string> descricao;
-
-    for(Imovel &i : imovel){
-        descricao.push_back(i.getDescricao());
-    }
-
-    return descricao;
 }
 
 list <Imovel> SistemaImobiliaria:: getImoveisPorTipo(int tipo){
+
     GerenteDePersistencia recupera;
     list <Imovel> imovel = recupera.recuperaListaImoveis();
     list <Imovel> imoveis;
@@ -37,10 +28,27 @@ list <Imovel> SistemaImobiliaria:: getImoveisPorTipo(int tipo){
             imoveis.push_back(i);
         }
     }
+
     return imoveis;
 }
 
+list <Imovel> SistemaImobiliaria::getImoveisPorTipoParaAlugar(int tipo){
+
+    GerenteDePersistencia recupera;
+    list <Imovel> imovel = recupera.recuperaListaImoveis();
+    list <Imovel> imoveis;
+
+    for(Imovel &i : imovel){
+        if(i.getTipoDeImovel() == tipo && i.getTipoOferta() == 0){
+            imoveis.push_back(i);
+        }
+    }
+
+    return imoveis;
+}
+        
 list <Imovel> SistemaImobiliaria:: getImoveisParaAlugarPorBairro(string bairro){
+
     GerenteDePersistencia recupera;
     list <Imovel> imovel = recupera.recuperaListaImoveis();
     list <Imovel> imoveis;
@@ -50,34 +58,45 @@ list <Imovel> SistemaImobiliaria:: getImoveisParaAlugarPorBairro(string bairro){
         if( ToUpper(bairro,i.getEndereco().getBairro()) && i.getTipoOferta() == 0){
             imoveis.push_back(i);
         }
+
     }
+
     return imoveis;
 }
 
 list <Imovel> SistemaImobiliaria:: getImoveisParaVenderPorBairro(string bairro){
-   GerenteDePersistencia recupera;
+ 
+    GerenteDePersistencia recupera;
     list <Imovel> imovel = recupera.recuperaListaImoveis();
     list <Imovel> imoveis;
+ 
     for(Imovel &i : imovel){
 
         if(ToUpper(bairro,i.getEndereco().getBairro()) && i.getTipoOferta() == 1){
             imoveis.push_back(i);
         }
+ 
     }
+ 
     return imoveis;
 }
 
 list<Imovel> SistemaImobiliaria:: getImoveisPorCidade(string cidade){
+ 
     GerenteDePersistencia recupera;
     list <Imovel> imovel = recupera.recuperaListaImoveis();
     list <Imovel> imoveis;
 
     for(Imovel &i: imovel){
+ 
         cout << i.getEndereco().getCidade()<< endl;
+ 
         if(ToUpper(cidade,i.getEndereco().getCidade())){
             imoveis.push_back(i);
         }
+ 
     }
+
     return imoveis;
 }
 
@@ -115,6 +134,7 @@ Casa* SistemaImobiliaria::cadastrarCasa(Endereco endereco, int tipoDeImovel){
             Casa *casa;
             int numPavimentos, numQuartos, tipoOferta;
             double areaTerreno, areaConstruida, valor;
+
 			cout << "-------------------------------------\n";
 			cout << "\t\tEspecificações\n";
 			cout << "-------------------------------------\n\n";
@@ -141,6 +161,7 @@ Casa* SistemaImobiliaria::cadastrarCasa(Endereco endereco, int tipoDeImovel){
             cin >> tipoOferta;
 			cout<<"Qual o valor do seu imovel?\n";
             cin >> valor;
+
             casa = new Casa(numPavimentos,numQuartos, areaTerreno, areaConstruida,tipoOferta, tipoDeImovel, valor, endereco);
             getchar();
             
@@ -149,10 +170,12 @@ Casa* SistemaImobiliaria::cadastrarCasa(Endereco endereco, int tipoDeImovel){
 }
 
 Apartamento* SistemaImobiliaria::cadastrarApartamento(Endereco endereco, int tipoDeImovel){
+
     int numQuartos, vagasGaragem, tipoOferta;
     double area, valor, valorCondominio;
     string posicao;
     Apartamento *apartamento;
+
     cout << "-------------------------------------\n";
     cout << "\t\tEspecificações\n";
     cout << "-------------------------------------\n\n";
@@ -165,13 +188,11 @@ Apartamento* SistemaImobiliaria::cadastrarApartamento(Endereco endereco, int tip
 
     cout<<"\nDigite o valor do condomínio: ";
     cin>>valorCondominio;
-    getchar();
 
     cout<<"\nDigite a area do apartamento: ";
     cin>>area;
     getchar();
     
-
     cout << "\nDigite a posicao do seu apartamento: ";
     getline(cin, posicao);
 
@@ -183,19 +204,23 @@ Apartamento* SistemaImobiliaria::cadastrarApartamento(Endereco endereco, int tip
          << "\t1 - Vender,\n"
          << "\t0 - Aluga.\n";
     cin >> tipoOferta;     
+    
     cout << "Qual o valor do seu imovel?\n";
     cin >> valor;
     getchar();
+    
     apartamento = new Apartamento(posicao, numQuartos, vagasGaragem, valorCondominio, area, tipoOferta, tipoDeImovel, valor, endereco);
+    
     cout <<"\n\nImovel Cadastrado Com Sucesso!\n";
     return apartamento;
 }
 
-
 Terreno* SistemaImobiliaria::cadastrarTerreno(Endereco endereco, int tipoDeImovel){
+
     double area, valor;
     int tipoOferta;
     Terreno *terreno;
+
     cout << "-------------------------------------\n";
     cout << "\t\tEspecificações\n";
     cout << "-------------------------------------\n\n";
@@ -217,15 +242,108 @@ Terreno* SistemaImobiliaria::cadastrarTerreno(Endereco endereco, int tipoDeImove
     cout<<"\n\nImovel Cadastrado Com Sucesso!\n";
     terreno = new Terreno(area,tipoOferta, tipoDeImovel, valor,endereco);
     getchar();
+
     return terreno;
 }
 
 bool SistemaImobiliaria::ToUpper(string entrada, string atributo){
+
 	string saidaUsuario;
-	for(int i = 0; i  < entrada.size(); i++){
+	
+    for(int i = 0; i  < entrada.size(); i++){
 		if(toupper(entrada[i]) == toupper(atributo[i]))
             continue;
         return false; 
-	}
+    }
+
 	return true;
+}
+
+
+Flat* SistemaImobiliaria::cadastrarFlat(Apartamento *apartamento){
+    
+    string ar, internet, tv, lavanderia, limpeza, recepcao;
+    
+    cout << "-------------------------------------\n";
+    cout << "\t\tEspecificações\n";
+    cout << "-------------------------------------\n\n";
+    cout << "\n\tPossui ar-condicionado ?\n"
+         << "Insira S para Sim ou N para Nao: ";
+    cin  >> ar;
+
+    cout << "\n\tPossui lavanderia ?\n"
+         << "Insira S para Sim ou N para Nao: ";
+    cin  >> lavanderia;
+
+    cout << "\n\tPossui limpeza ?\n"
+         << "Insira S para Sim ou N para Nao: ";
+    cin  >> limpeza;
+
+    cout << "\n\tPossui TV a cabo ?\n"
+         << "Insira S para Sim ou N para Nao: ";
+    cin  >> tv;  
+
+    cout << "\n\tPossui Internet ?\n"
+         << "Insira S para Sim ou N para Nao: ";
+    cin  >> internet;  
+
+    cout << "\n\tPossui recepcao ?\n"
+         << "Insira S para Sim ou N para Nao: ";
+    cin  >> recepcao;  
+    
+    Flat* flat = new Flat(ar, 
+                          internet, 
+                          tv, 
+                          lavanderia, 
+                          limpeza, 
+                          recepcao, 
+                          apartamento->getPosicao(),
+                          apartamento->getNumQuartos(), 
+                          apartamento->getVagasGaragem(),
+                          apartamento->getValorCondominio(),
+                          apartamento->getArea(),
+                          apartamento->getTipoOferta(),
+                          apartamento->getTipoDeImovel(),
+                          apartamento->getValor(),
+                          apartamento->getEndereco());
+    return flat;
+}
+
+Studio* SistemaImobiliaria::cadastrarStudio( Flat *flat){
+    
+    string piscina, sauna, ginastica;
+    cout << "-------------------------------------\n";
+    cout << "\t\tEspecificações\n";
+    cout << "-------------------------------------\n\n";
+    cout << "\n\tPossui Sauna ?\n"
+         << "Insira S para Sim ou N para Nao: ";
+    cin  >> sauna;
+
+    cout << "\n\tPossui Piscina ?\n"
+         << "Insira S para Sim ou N para Nao: ";
+    cin  >> piscina;
+
+    cout << "\n\tPossui salão de Ginastica ?\n"
+         << "Insira S para Sim ou N para Nao: ";
+    cin  >> ginastica;
+    
+    Studio* studio = new Studio(piscina,
+                          sauna,
+                          ginastica,
+                          flat->getAr(), 
+                          flat->getInternet(), 
+                          flat->getTv(), 
+                          flat->getLavanderia(), 
+                          flat->getLimpeza(), 
+                          flat->getRecepcao(), 
+                          flat->getPosicao(),
+                          flat->getNumQuartos(), 
+                          flat->getVagasGaragem(),
+                          flat->getValorCondominio(),
+                          flat->getArea(),
+                          flat->getTipoOferta(),
+                          flat->getTipoDeImovel(),
+                          flat->getValor(),
+                          flat->getEndereco());
+    return studio;
 }

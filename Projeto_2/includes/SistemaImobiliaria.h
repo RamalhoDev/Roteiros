@@ -2,7 +2,7 @@
 #define SISTEMAIMOBILIARIA_H
 #include <string>
 #include <list>
-#include "/home/rodrigoramalho/roteiro/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
 using namespace std;
 
 class SistemaImobiliaria{
@@ -12,7 +12,7 @@ class SistemaImobiliaria{
         SistemaImobiliaria();
         ~SistemaImobiliaria();
         list <Imovel> getImoveis();
-        list <string> getDescricaoImoveis();
+        list <Imovel> getImoveisPorTipoParaAlugar(int tipo);
         list <Imovel> getImoveisPorTipo(int tipo);
         list <Imovel> getImoveisParaAlugarPorBairro(string bairro);
         list <Imovel> getImoveisParaVenderPorBairro(string bairro);
@@ -20,6 +20,8 @@ class SistemaImobiliaria{
         Casa* cadastrarCasa( Endereco endereco, int tipoDeImovel);
         Apartamento* cadastrarApartamento(Endereco endereco, int tipoDeImovel);
         Terreno* cadastrarTerreno(Endereco endereco, int tipoDeImovel);
+        Flat* cadastrarFlat(Apartamento* apartamento);
+        Studio* cadastrarStudio(Flat *flat);
         bool ToUpper(string entrada, string atributo);
         Endereco cadastrarEndereco();
 };

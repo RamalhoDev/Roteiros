@@ -2,6 +2,7 @@
 #define IMOVEL_H
 #include <string>
 #include <fstream>
+
 using namespace std;
 
 class Endereco{
@@ -96,7 +97,7 @@ class Casa: public Imovel{
 };
 
 class Apartamento: public Imovel{
-    private:
+    protected:
         string posicao;
         int numQuartos, vagasGaragem;
         double valorCondominio, area;
@@ -144,6 +145,79 @@ class Terreno: public Imovel{
 
         string getDescricao();
         double getArea();
+};
+
+class Flat: public Apartamento{
+    protected:
+        string ar, internet, tv, lavanderia, limpeza, recepcao;
+    public:
+        Flat();
+        Flat(string ar,
+             string internet,
+             string tv,
+             string lavanderia,
+             string limpeza,
+             string recepcao,
+             string posicao,
+             int numQuartos,
+             int vagasGaragem, 
+             double valorCondominio, 
+             double area,
+             int tipoOferta,
+             int tipoDeImovel, 
+             double valor, 
+             const Endereco &endereco);
+        virtual ~Flat(){}
+        string getAr();
+        string getInternet();
+        string getTv();
+        string getLavanderia();
+        string getLimpeza();
+        string getRecepcao();
+
+        void setAr(string ar);
+        void setInternet(string internet);
+        void setTv(string tv);
+        void setLavanderia(string lavanderia);
+        void setLimpeza(string limpeza);
+        void setRecepcao(string recepcao);
+
+        string getDescricao();
+};
+
+class Studio: public Flat{
+    private:
+        string piscina, sauna, ginastica;
+    public:
+        Studio();
+        Studio( string piscina,
+                string sauna,
+                string ginastica,
+                string ar,
+                string internet,
+                string tv,
+                string lavanderia,
+                string limpeza,
+                string recepcao,
+                string posicao,
+                int numQuartos,
+                int vagasGaragem, 
+                double valorConominio, 
+                double area,
+                int tipoOferta,
+                int tipoDeImovel, 
+                double valor, 
+                const Endereco &endereco);
+        virtual ~Studio(){}
+        string getPiscina();
+        string getSauna();
+        string getGinastica();
+
+        void setPiscina(string piscina);
+        void setSauna(string sauna);
+        void setGinastica(string ginastica);
+
+        string getDescricao();
 };
 
 #endif
