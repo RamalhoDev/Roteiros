@@ -1,15 +1,15 @@
 #include <iostream>
 #include <string>
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"
-#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/SistemaImobiliaria.h"	//"SistemaImobiliaria.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/GerenteDePersistencia.h"	//"GerenteDePersistencia.h"
+#include "/home/rcr/Documentos/Backup_Mint/GITS/Roteiros/Projeto_2/includes/Imovel.h"			//"Imovel.h"
 
 using namespace std;
 
-SistemaImobiliaria::SistemaImobiliaria(){}
+SistemaImobiliaria::SistemaImobiliaria(){} //Construtor de Sistema Imobiliaria
 SistemaImobiliaria::~SistemaImobiliaria(){}
 
-list <Imovel> SistemaImobiliaria:: getImoveis(){
+list <Imovel> SistemaImobiliaria:: getImoveis(){	//Lendo as Listas referentes a Sistema Imobiliaria
 
     GerenteDePersistencia recupera;
     list<Imovel> imovel = recupera.recuperaListaImoveis();
@@ -17,7 +17,7 @@ list <Imovel> SistemaImobiliaria:: getImoveis(){
 
 }
 
-list <Imovel> SistemaImobiliaria:: getImoveisPorTipo(int tipo){
+list <Imovel> SistemaImobiliaria:: getImoveisPorTipo(int tipo){		//Lendo as Listas referentes a Imoveis por Tipo
 
     GerenteDePersistencia recupera;
     list <Imovel> imovel = recupera.recuperaListaImoveis();
@@ -32,7 +32,7 @@ list <Imovel> SistemaImobiliaria:: getImoveisPorTipo(int tipo){
     return imoveis;
 }
 
-list <Imovel> SistemaImobiliaria::getImoveisPorTipoParaAlugar(int tipo){
+list <Imovel> SistemaImobiliaria::getImoveisPorTipoParaAlugar(int tipo){	//Lendo as Listas referentes a Imovel para alugar
 
     GerenteDePersistencia recupera;
     list <Imovel> imovel = recupera.recuperaListaImoveis();
@@ -47,8 +47,7 @@ list <Imovel> SistemaImobiliaria::getImoveisPorTipoParaAlugar(int tipo){
     return imoveis;
 }
         
-list <Imovel> SistemaImobiliaria:: getImoveisParaAlugarPorBairro(string bairro){
-
+list <Imovel> SistemaImobiliaria:: getImoveisParaAlugarPorBairro(string bairro){	//Lendo as Listas referentes a Imovel para alugar por Bairro
     GerenteDePersistencia recupera;
     list <Imovel> imovel = recupera.recuperaListaImoveis();
     list <Imovel> imoveis;
@@ -64,7 +63,7 @@ list <Imovel> SistemaImobiliaria:: getImoveisParaAlugarPorBairro(string bairro){
     return imoveis;
 }
 
-list <Imovel> SistemaImobiliaria:: getImoveisParaVenderPorBairro(string bairro){
+list <Imovel> SistemaImobiliaria:: getImoveisParaVenderPorBairro(string bairro){	//Lendo as Listas referentes a Imovel para vender por Bairro
  
     GerenteDePersistencia recupera;
     list <Imovel> imovel = recupera.recuperaListaImoveis();
@@ -81,7 +80,7 @@ list <Imovel> SistemaImobiliaria:: getImoveisParaVenderPorBairro(string bairro){
     return imoveis;
 }
 
-list<Imovel> SistemaImobiliaria:: getImoveisPorCidade(string cidade){
+list<Imovel> SistemaImobiliaria:: getImoveisPorCidade(string cidade){	//Lendo as Listas referentes a Imovel por Cidades
  
     GerenteDePersistencia recupera;
     list <Imovel> imovel = recupera.recuperaListaImoveis();
@@ -100,7 +99,7 @@ list<Imovel> SistemaImobiliaria:: getImoveisPorCidade(string cidade){
     return imoveis;
 }
 
-Endereco SistemaImobiliaria::cadastrarEndereco(){
+Endereco SistemaImobiliaria::cadastrarEndereco(){	//Cadastramento de endereços dos Imoveis em geral
 
             string cidade, bairro, logradouro, cep;
             int numero;
@@ -129,7 +128,7 @@ Endereco SistemaImobiliaria::cadastrarEndereco(){
             return *endereco;
 }
 
-Casa* SistemaImobiliaria::cadastrarCasa(Endereco endereco, int tipoDeImovel){
+Casa* SistemaImobiliaria::cadastrarCasa(Endereco endereco, int tipoDeImovel){	//Cadastramento das informações especificas de uma Casa
 
             Casa *casa;
             int numPavimentos, numQuartos, tipoOferta;
@@ -169,7 +168,7 @@ Casa* SistemaImobiliaria::cadastrarCasa(Endereco endereco, int tipoDeImovel){
             return casa;
 }
 
-Apartamento* SistemaImobiliaria::cadastrarApartamento(Endereco endereco, int tipoDeImovel){
+Apartamento* SistemaImobiliaria::cadastrarApartamento(Endereco endereco, int tipoDeImovel){	//Cadastramento das informações especificas de um Apartamento
 
     int numQuartos, vagasGaragem, tipoOferta;
     double area, valor, valorCondominio;
@@ -215,7 +214,7 @@ Apartamento* SistemaImobiliaria::cadastrarApartamento(Endereco endereco, int tip
     return apartamento;
 }
 
-Terreno* SistemaImobiliaria::cadastrarTerreno(Endereco endereco, int tipoDeImovel){
+Terreno* SistemaImobiliaria::cadastrarTerreno(Endereco endereco, int tipoDeImovel){	//Cadastramento das informações especificas de um Terreno
 
     double area, valor;
     int tipoOferta;
@@ -260,7 +259,7 @@ bool SistemaImobiliaria::ToUpper(string entrada, string atributo){
 }
 
 
-Flat* SistemaImobiliaria::cadastrarFlat(Apartamento *apartamento){
+Flat* SistemaImobiliaria::cadastrarFlat(Apartamento *apartamento){	//Cadastramento das informações especificas de um Flat
     
     string ar, internet, tv, lavanderia, limpeza, recepcao;
     
@@ -309,7 +308,7 @@ Flat* SistemaImobiliaria::cadastrarFlat(Apartamento *apartamento){
     return flat;
 }
 
-Studio* SistemaImobiliaria::cadastrarStudio( Flat *flat){
+Studio* SistemaImobiliaria::cadastrarStudio( Flat *flat){	//Cadastramento das informações especificas de um Studio
     
     string piscina, sauna, ginastica;
     cout << "-------------------------------------\n";
